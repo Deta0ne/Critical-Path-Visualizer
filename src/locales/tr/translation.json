@@ -1,0 +1,37 @@
+{
+    "common": {
+        "title": "Kritik Yol Görselleştirici",
+        "add": "Ekle",
+        "edit": "Düzenle",
+        "delete": "Sil",
+        "save": "Kaydet",
+        "cancel": "İptal",
+        "close": "Kapat"
+      },
+      "activity": {
+        "title": "Aktiviteler",
+        "name": "Aktivite Adı",
+        "duration": "Süre",
+        "optimistic": "İyimser Süre",
+        "mostLikely": "Olası Süre",
+        "pessimistic": "Kötümser Süre",
+        "earliestStart": "En Erken Başlangıç",
+        "earliestFinish": "En Erken Bitiş",
+        "latestStart": "En Geç Başlangıç",
+        "latestFinish": "En Geç Bitiş",
+        "slack": "Bolluk",
+        "dependencies": "Bağımlılıklar"
+      },
+      "analysis": {
+        "criticalPath": "Kritik Yol",
+        "projectDuration": "Proje Süresi",
+        "standardDeviation": "Standart Sapma",
+        "variance": "Varyans"
+      },
+      "errors": {
+        "invalidInput": "Geçersiz giriş",
+        "duplicateActivity": "Bu aktivite zaten mevcut",
+        "missingFields": "Lütfen tüm gerekli alanları doldurun",
+        "invalidDuration": "Süre pozitif olmalıdır"
+      }
+  }

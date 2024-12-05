@@ -1,0 +1,34 @@
+{
+    "common": {
+        "title": "Critical Path Visualizer",
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "activity": {
+        "title": "Activities",
+        "name": "Activity Name",
+        "duration": "Duration",
+        "optimistic": "Optimistic Time",
+        "mostLikely": "Most Likely Time",
+        "pessimistic": "Pessimistic Time",
+        "earliestStart": "Earliest Start",
+        "earliestFinish": "Earliest Finish",
+        "latestStart": "Latest Start",
+        "latestFinish": "Latest Finish",
+        "slack": "Slack",
+        "dependencies": "Dependencies"
+    },
+    "analysis": {
+        "criticalPath": "Critical Path",
+        "projectDuration": "Project Duration",
+        "standardDeviation": "Standard Deviation",
+        "variance": "Variance"
+      },
+      "errors": {
+        "invalidInput": "Invalid input",
+        "duplicateActivity": "Activity already exists",
+        "missingFields": "Please fill all required fields",
+        "invalidDuration": "Duration must be positive"
+      }
+}
