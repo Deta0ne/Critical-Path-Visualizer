@@ -4,8 +4,8 @@
         "add": "Add",
         "edit": "Edit",
         "delete": "Delete"
-      },
-      "activity": {
+    },
+    "activity": {
         "title": "Activities",
         "name": "Activity Name",
         "duration": "Duration",
@@ -24,11 +24,41 @@
         "projectDuration": "Project Duration",
         "standardDeviation": "Standard Deviation",
         "variance": "Variance"
-      },
-      "errors": {
+    },
+    "errors": {
         "invalidInput": "Invalid input",
         "duplicateActivity": "Activity already exists",
         "missingFields": "Please fill all required fields",
         "invalidDuration": "Duration must be positive"
-      }
+    },
+    "pages": {
+        "home": {
+            "title": "Home",
+            "description": "Welcome to Critical Path Visualizer"
+        },
+        "dashboard": {
+            "title": "Dashboard",
+            "description": "View your project analytics"
+        },
+        "projects": {
+            "title": "Projects",
+            "description": "Manage your projects"
+        },
+        "calendar": {
+            "title": "Calendar",
+            "description": "View project timeline"
+        },
+        "help": {
+            "title": "Help",
+            "description": "Get help and support",
+            "faq": "Frequently Asked Questions",
+            "contact": "Contact Support"
+        },
+        "settings": {
+            "title": "Settings",
+            "description": "Manage your preferences",
+            "appearance": "Appearance",
+            "preferences": "Preferences"
+        }
+    }
 }
