@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from 'lucide-react';
+import { Calendar, Home, Settings, LayoutDashboard, ChartNoAxesColumn, CircleHelp } from 'lucide-react';
 import { DatePicker } from '@/components/date-picker';
 import {
     Sidebar,
@@ -11,31 +11,35 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 
-// Menu items.
 const items = [
     {
         title: 'Home',
-        url: '#',
+        url: '/',
         icon: Home,
     },
     {
-        title: 'Inbox',
-        url: '#',
-        icon: Inbox,
+        title: 'Dashboard',
+        url: '/dashboard',
+        icon: LayoutDashboard,
+    },
+    {
+        title: 'Projects',
+        url: '/projects',
+        icon: ChartNoAxesColumn,
     },
     {
         title: 'Calendar',
-        url: '#',
+        url: '/calendar',
         icon: Calendar,
     },
     {
-        title: 'Search',
-        url: '#',
-        icon: Search,
+        title: 'Help',
+        url: '/help',
+        icon: CircleHelp,
     },
     {
         title: 'Settings',
-        url: '#',
+        url: '/settings',
         icon: Settings,
     },
 ];

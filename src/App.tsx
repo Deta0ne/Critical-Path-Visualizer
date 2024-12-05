@@ -1,20 +1,16 @@
 import './App.css';
-import { Button } from '@/components/ui/button';
-import { ModeToggle } from '@/components/mode-toggle';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
-import { useTranslation } from 'react-i18next';
+import { Routes, Route } from 'react-router-dom';
 import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar';
 import { SidebarInset } from './components/ui/sidebar';
 import { Separator } from './components/ui/separator';
 import { AppSidebar } from './components/app-sidebar';
-import { useCounterStore } from './store/store';
+import { routes } from './config/routes';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './components/LanguageSwitcher';
+import { ModeToggle } from './components/mode-toggle';
 
 function App() {
     const { t } = useTranslation();
-    const count = useCounterStore((state) => state.count);
-    const increment = useCounterStore((state) => state.increment);
-    const decrement = useCounterStore((state) => state.decrement);
-    const incrementAsync = useCounterStore((state) => state.incrementAsync);
 
     return (
         <SidebarProvider>
@@ -24,20 +20,18 @@ function App() {
                     <SidebarTrigger className="-ml-1" />
                     <Separator orientation="vertical" className="mr-2 h-4" />
                     <h1>{t('common.title')}</h1>
-                </header>
-                <div className="flex flex-1 flex-col gap-4 p-4">
-                    <div>
-                        <div className="flex gap-4 items-center">
-                            <Button>{t('common.add')}</Button>
-                            <ModeToggle />
-                            <LanguageSwitcher />
-                            <p>{count}</p>
-                            <Button onClick={() => increment()}>Increment</Button>
-                            <Button onClick={() => decrement()}>Decrement</Button>
-                            <Button onClick={() => incrementAsync()}>Increment Async</Button>
-                        </div>
+                    <div className="flex-1 flex justify-end gap-2">
+                        <LanguageSwitcher />
+                        <ModeToggle />
                     </div>
-                </div>
+                </header>
+                <main className="flex-1">
+                    <Routes>
+                        {routes.map(({ path, element: Element }) => (
+                            <Route key={path} path={path} element={<Element />} />
+                        ))}
+                    </Routes>
+                </main>
             </SidebarInset>
         </SidebarProvider>
     );

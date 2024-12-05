@@ -7,8 +7,8 @@
         "save": "Kaydet",
         "cancel": "İptal",
         "close": "Kapat"
-      },
-      "activity": {
+    },
+    "activity": {
         "title": "Aktiviteler",
         "name": "Aktivite Adı",
         "duration": "Süre",
@@ -21,17 +21,47 @@
         "latestFinish": "En Geç Bitiş",
         "slack": "Bolluk",
         "dependencies": "Bağımlılıklar"
-      },
-      "analysis": {
+    },
+    "analysis": {
         "criticalPath": "Kritik Yol",
         "projectDuration": "Proje Süresi",
         "standardDeviation": "Standart Sapma",
         "variance": "Varyans"
-      },
-      "errors": {
+    },
+    "errors": {
         "invalidInput": "Geçersiz giriş",
         "duplicateActivity": "Bu aktivite zaten mevcut",
         "missingFields": "Lütfen tüm gerekli alanları doldurun",
         "invalidDuration": "Süre pozitif olmalıdır"
-      }
-  }
+    },
+    "pages": {
+        "home": {
+            "title": "Ana Sayfa",
+            "description": "Kritik Yol Görselleştiriciye Hoş Geldiniz"
+        },
+        "dashboard": {
+            "title": "Gösterge Paneli",
+            "description": "Proje analizlerinizi görüntüleyin"
+        },
+        "projects": {
+            "title": "Projeler",
+            "description": "Projelerinizi yönetin"
+        },
+        "calendar": {
+            "title": "Takvim",
+            "description": "Proje zaman çizelgesini görüntüleyin"
+        },
+        "help": {
+            "title": "Yardım",
+            "description": "Yardım ve destek alın",
+            "faq": "Sıkça Sorulan Sorular",
+            "contact": "Destek İletişimi"
+        },
+        "settings": {
+            "title": "Ayarlar",
+            "description": "Tercihlerinizi yönetin",
+            "appearance": "Görünüm",
+            "preferences": "Tercihler"
+        }
+    }
+}
