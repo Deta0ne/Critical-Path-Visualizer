@@ -1,12 +1,16 @@
 {
     "common": {
         "title": "Kritik Yol Görselleştirici",
-        "add": "Ekle",
+        "addActivity": "Aktivite Ekle",
         "edit": "Düzenle",
         "delete": "Sil",
         "save": "Kaydet",
         "cancel": "İptal",
-        "close": "Kapat"
+        "close": "Kapat",
+        "actions": "İşlemler",
+        "deletedActivity": "Aktivite silindi",
+        "saveSuccess": "Başarıyla kaydedildi",
+        "required": "gereklidir"
     },
     "activity": {
         "title": "Aktiviteler",
@@ -32,7 +36,15 @@
         "invalidInput": "Geçersiz giriş",
         "duplicateActivity": "Bu aktivite zaten mevcut",
         "missingFields": "Lütfen tüm gerekli alanları doldurun",
-        "invalidDuration": "Süre pozitif olmalıdır"
+        "invalidDuration": "Süre pozitif olmalıdır",
+        "durationOrder": "İyimser süre olası süreden küçük, olası süre kötümser süreden küçük olmalıdır",
+        "required": "gereklidir",
+        "optimisticTooHigh": "İyimser süre olası süreden büyük olamaz",
+        "mostLikelyRange": "Olası süre iyimser ve kötümser sürelerin arasında olmalıdır",
+        "pessimisticTooLow": "Kötümser süre olası süreden küçük olamaz",
+        "invalidDependencies": "Geçersiz bağımlılıklar: {{deps}}",
+        "cannotDelete": "Aktivite silinemez",
+        "activityHasDependents": "Bu aktiviteye bağımlı olanlar: {{activities}}"
     },
     "pages": {
         "home": {

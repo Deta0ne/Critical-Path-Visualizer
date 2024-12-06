@@ -1,9 +1,13 @@
 {
     "common": {
         "title": "Critical Path Visualizer",
-        "add": "Add",
+        "addActivity": "Add Activity",
         "edit": "Edit",
-        "delete": "Delete"
+        "delete": "Delete",
+        "actions": "Actions",
+        "deletedActivity": "Activity deleted",
+        "saveSuccess": "Successfully saved",
+        "required": "is required"
     },
     "activity": {
         "title": "Activities",
@@ -29,7 +33,15 @@
         "invalidInput": "Invalid input",
         "duplicateActivity": "Activity already exists",
         "missingFields": "Please fill all required fields",
-        "invalidDuration": "Duration must be positive"
+        "invalidDuration": "Duration must be positive",
+        "durationOrder": "Optimistic time should be less than most likely time, and most likely time should be less than pessimistic time",
+        "required": "is required",
+        "optimisticTooHigh": "Optimistic time cannot be greater than most likely time",
+        "mostLikelyRange": "Most likely time must be between optimistic and pessimistic times",
+        "pessimisticTooLow": "Pessimistic time cannot be less than most likely time",
+        "invalidDependencies": "Invalid dependencies: {{deps}}",
+        "cannotDelete": "Cannot delete activity",
+        "activityHasDependents": "This activity is depended on by: {{activities}}"
     },
     "pages": {
         "home": {
