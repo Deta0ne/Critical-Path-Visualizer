@@ -27,7 +27,9 @@
         "criticalPath": "Critical Path",
         "projectDuration": "Project Duration",
         "standardDeviation": "Standard Deviation",
-        "variance": "Variance"
+        "variance": "Variance",
+        "networkDiagram": "Network Diagram",
+        "expectedDuration": "Expected Duration"
     },
     "errors": {
         "invalidInput": "Invalid input",

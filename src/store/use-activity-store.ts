@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { z } from 'zod';
+import { Activity, ActivityState } from '@/types/Activity';
 
 export const activitySchema = z.object({
     id: z.number(),
@@ -14,23 +15,6 @@ export const activitySchema = z.object({
     message: "Times must be in order: optimistic <= most likely <= pessimistic",
     path: ["times"]
 });
-
-export type Activity = {
-    id: number;
-    name: string;
-    optimistic: number;
-    mostLikely: number;
-    pessimistic: number;
-    dependencies: string[];
-};
-
-interface ActivityState {
-    activities: Activity[];
-    addActivity: () => void;
-    updateActivity: (id: number, data: Partial<Activity>) => void;
-    deleteActivity: (id: number) => void;
-    validateActivity: (activity: Activity) => z.SafeParseReturnType<Activity, Activity>;
-}
 
 export const useActivityStore = create<ActivityState>((set, get) => ({
     activities: [],
