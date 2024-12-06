@@ -30,7 +30,9 @@
         "criticalPath": "Kritik Yol",
         "projectDuration": "Proje Süresi",
         "standardDeviation": "Standart Sapma",
-        "variance": "Varyans"
+        "variance": "Varyans",
+        "networkDiagram": "Ağ Diyagramı",
+        "expectedDuration": "Beklenen Süre"
     },
     "errors": {
         "invalidInput": "Geçersiz giriş",
