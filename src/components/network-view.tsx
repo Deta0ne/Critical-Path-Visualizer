@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import { useTheme } from '@/components/theme-provider';
 
 interface Node extends d3.SimulationNodeDatum {
     id: number;
@@ -23,7 +24,8 @@ type NetworkViewProps = {
 
 export function NetworkView({ activities }: NetworkViewProps) {
     const svgRef = useRef<SVGSVGElement>(null);
-
+    const { theme } = useTheme();
+    console.log(theme);
     useEffect(() => {
         if (!svgRef.current || !activities.length) return;
 
@@ -62,14 +64,14 @@ export function NetworkView({ activities }: NetworkViewProps) {
             .append('marker')
             .attr('id', 'arrowhead')
             .attr('viewBox', '-0 -5 10 10')
-            .attr('refX', 35)
+            .attr('refX', 34)
             .attr('refY', 0)
             .attr('orient', 'auto')
             .attr('markerWidth', 8)
             .attr('markerHeight', 8)
             .append('path')
             .attr('d', 'M 0,-5 L 10,0 L 0,5')
-            .attr('fill', 'rgb(153, 153, 153)');
+            .attr('fill', theme === 'dark' ? 'rgb(153, 153, 153)' : 'black');
 
         // Create links
         const link = g
@@ -77,7 +79,7 @@ export function NetworkView({ activities }: NetworkViewProps) {
             .selectAll('line')
             .data(links)
             .join('line')
-            .attr('stroke', 'rgb(153, 153, 153)')
+            .attr('stroke', theme === 'dark' ? 'rgb(153, 153, 153)' : 'black')
             .attr('stroke-width', 2)
             .attr('marker-end', 'url(#arrowhead)');
 
@@ -98,7 +100,7 @@ export function NetworkView({ activities }: NetworkViewProps) {
             .append('text')
             .attr('text-anchor', 'middle')
             .attr('dy', '0.3em')
-            .attr('fill', 'black')
+            .attr('fill', theme === 'dark' ? 'white' : 'black')
             .attr('font-size', '14')
             .text((d) => d.name || `A${d.id}`);
 
@@ -142,7 +144,7 @@ export function NetworkView({ activities }: NetworkViewProps) {
         return () => {
             simulation.stop();
         };
-    }, [activities]);
+    }, [activities, theme]);
 
     return (
         <div className="border rounded-lg  bg-muted">
