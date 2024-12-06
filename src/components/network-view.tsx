@@ -1,31 +1,14 @@
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { useTheme } from '@/components/theme-provider';
+import { useActivityStore } from '@/store/use-activity-store';
+import { Node, Link } from '@/types/Activity';
 
-interface Node extends d3.SimulationNodeDatum {
-    id: number;
-    name: string;
-    optimistic: number;
-    mostLikely: number;
-    pessimistic: number;
-    dependencies: string[];
-    x?: number;
-    y?: number;
-}
-
-interface Link extends d3.SimulationLinkDatum<Node> {
-    source: Node;
-    target: Node;
-}
-
-type NetworkViewProps = {
-    activities: Node[];
-};
-
-export function NetworkView({ activities }: NetworkViewProps) {
+export function NetworkView() {
     const svgRef = useRef<SVGSVGElement>(null);
     const { theme } = useTheme();
-    console.log(theme);
+    const activities = useActivityStore((state) => state.activities as Node[]);
+
     useEffect(() => {
         if (!svgRef.current || !activities.length) return;
 

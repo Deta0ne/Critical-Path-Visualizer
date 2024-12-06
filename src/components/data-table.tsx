@@ -5,15 +5,7 @@ import { Plus, Trash2 } from 'lucide-react';
 import { useActivityStore } from '@/store/use-activity-store';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '@/hooks/use-toast';
-
-type Activity = {
-    id: number;
-    name: string;
-    optimistic: number;
-    mostLikely: number;
-    pessimistic: number;
-    dependencies: string[];
-};
+import { Activity } from '@/types/Activity';
 
 export function DataTable() {
     const { activities, updateActivity, addActivity, deleteActivity } = useActivityStore();
