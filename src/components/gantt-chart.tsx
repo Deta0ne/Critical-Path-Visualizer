@@ -31,15 +31,14 @@ const expectedDuration = (activity: Node) => {
 };
 export function GanttChart() {
     const activities = useActivityStore((state) => state.activities as Node[]);
-    console.log(activities);
     return (
-        <Card>
-            <CardHeader>
+        <Card className="w-full h-full">
+            <CardHeader className="pb-2">
                 <CardTitle>Gantt Chart</CardTitle>
                 <CardDescription>January - June 2024</CardDescription>
             </CardHeader>
-            <CardContent>
-                <ChartContainer config={chartConfig}>
+            <CardContent className="h-[calc(100%-80px)]">
+                <ChartContainer config={chartConfig} className="w-full h-full">
                     <BarChart
                         accessibilityLayer
                         data={
@@ -50,22 +49,14 @@ export function GanttChart() {
                         }
                         layout="vertical"
                         margin={{
-                            right: 16,
+                            left: -50,
                         }}
                     >
                         <CartesianGrid horizontal={false} />
-                        <YAxis
-                            dataKey="month"
-                            type="category"
-                            tickLine={false}
-                            tickMargin={10}
-                            axisLine={false}
-                            tickFormatter={(value) => value.slice(0, 3)}
-                            hide
-                        />
-                        <XAxis dataKey="desktop" type="number" hide />
+                        <YAxis dataKey="month" type="category" tickLine={false} tickMargin={10} axisLine={false} />
+                        <XAxis dataKey="desktop" type="number" domain={[0, 'auto']} />
                         <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
-                        <Bar dataKey="desktop" layout="vertical" fill="var(--color-desktop)" radius={4}>
+                        <Bar dataKey="desktop" layout="vertical" fill="var(--color-desktop)" radius={4} barSize={30}>
                             <LabelList
                                 dataKey="month"
                                 position="insideLeft"
