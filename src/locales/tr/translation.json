@@ -24,7 +24,9 @@
         "latestStart": "En Geç Başlangıç",
         "latestFinish": "En Geç Bitiş",
         "slack": "Bolluk",
-        "dependencies": "Bağımlılıklar"
+        "dependencies": "Bağımlılıklar",
+        "expectedDuration": "Beklenen Süre"
+
     },
     "analysis": {
         "criticalPath": "Kritik Yol",
@@ -32,7 +34,8 @@
         "standardDeviation": "Standart Sapma",
         "variance": "Varyans",
         "networkDiagram": "Ağ Diyagramı",
-        "expectedDuration": "Beklenen Süre"
+        "expectedDuration": "Beklenen Süre",
+        "ganttChart": "Gantt Çizelgesi"
     },
     "errors": {
         "invalidInput": "Geçersiz giriş",

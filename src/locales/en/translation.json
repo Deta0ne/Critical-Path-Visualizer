@@ -8,6 +8,7 @@
         "deletedActivity": "Activity deleted",
         "saveSuccess": "Successfully saved",
         "required": "is required"
+        
     },
     "activity": {
         "title": "Activities",
@@ -21,7 +22,9 @@
         "latestStart": "Latest Start",
         "latestFinish": "Latest Finish",
         "slack": "Slack",
-        "dependencies": "Dependencies"
+        "dependencies": "Dependencies",
+        "expectedDuration": "Expected Duration"
+       
     },
     "analysis": {
         "criticalPath": "Critical Path",
@@ -29,7 +32,8 @@
         "standardDeviation": "Standard Deviation",
         "variance": "Variance",
         "networkDiagram": "Network Diagram",
-        "expectedDuration": "Expected Duration"
+        "expectedDuration": "Expected Duration",
+        "ganttChart": "Gantt Chart"
     },
     "errors": {
         "invalidInput": "Invalid input",
