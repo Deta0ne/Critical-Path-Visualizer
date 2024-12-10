@@ -11,7 +11,10 @@
         "deletedActivity": "Aktivite silindi",
         "saveSuccess": "Başarıyla kaydedildi",
         "required": "gereklidir",
-        "selectStartDate": "Başlangıç Tarihi Seçin"
+        "selectStartDate": "Başlangıç Tarihi Seçin",
+        "importExcel": "Excel'den İçe Aktar",
+        "dataImported": "Veri başarıyla içe aktarıldı"
+
     },
     "activity": {
         "title": "Aktiviteler",
@@ -27,7 +30,7 @@
         "slack": "Bolluk",
         "dependencies": "Bağımlılıklar",
         "expectedDuration": "Beklenen Süre"
-
+      
     },
     "table": {
         "startDate": "Başlangıç Tarihi",

@@ -38,14 +38,15 @@ export interface ActivityStore {
     deleteActivity: (id: number) => void;
     validateActivity: (activity: Activity) => z.SafeParseReturnType<Activity, Activity>;
     calculateCPM: () => CPMActivity[];
+    handleFileUpload: (file: File) => void;
 }
 export interface CPMActivity {
-    ES: number;  // Early Start (gün olarak)
-    EF: number;  // Early Finish (gün olarak)
-    LS: number;  // Late Start (gün olarak)
-    LF: number;  // Late Finish (gün olarak)
-    startDate: Date;  // Başlangıç tarihi
-    endDate: Date;    // Bitiş tarihi
+    ES: number; 
+    EF: number;  
+    LS: number; 
+    LF: number;  
+    startDate: Date;  
+    endDate: Date;    
     slack: number;
     isOnCriticalPath: boolean;
     dependencies: string[];
@@ -54,4 +55,12 @@ export interface CPMActivity {
     mostLikely: number;
     pessimistic: number;
     id: number;
+}
+
+export interface NormalizedExcelRow {
+    name?: string;
+    optimistic?: number;
+    mostLikely?: number;
+    pessimistic?: number;
+    dependencies?: string;
 }
