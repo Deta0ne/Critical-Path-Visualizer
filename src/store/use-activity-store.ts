@@ -1,22 +1,8 @@
 import { create } from 'zustand';
 import { z } from 'zod';
-import { Activity, ActivityStore } from '@/types/Activity';
+import { Activity, ActivityStore,CPMActivity } from '@/types/Activity';
 
-export interface CPMActivity {
-    ES: number;  // Early Start
-    EF: number;  // Early Finish
-    LS: number;  // Late Start
-    LF: number;  // Late Finish
-    slack: number;
-    isOnCriticalPath: boolean;
-    dependencies: string[];
-    name: string;
-    optimistic: number;
-    mostLikely: number;
-    pessimistic: number;
-    id: number;
 
-}
 
 export const activitySchema = z.object({
     id: z.number(),
@@ -72,20 +58,31 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
     },
 
     calculateCPM: () => {
-        const activities = get().activities;
+        const startDate = get().startDate;
+        if (!startDate) return [];
+        const activities = get().activities as Activity[];
         const cpmActivities: CPMActivity[] = activities.map(activity => ({
             ...activity,
             ES: 0,
             EF: 0,
             LS: 0,
             LF: 0,
+            startDate: new Date(startDate),
+            endDate: new Date(startDate),
             slack: 0,
             isOnCriticalPath: false
         }));
 
         // Helper function to calculate duration
         const getDuration = (activity: CPMActivity) => {
-            return (activity.optimistic + 4 * activity.mostLikely + activity.pessimistic) / 6;
+            return Math.round((activity.optimistic + 4 * activity.mostLikely + activity.pessimistic) / 6);
+        };
+
+        // Helper function to add days to a date
+        const addDays = (date: Date, days: number) => {
+            const result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return result;
         };
 
         // Forward Pass
@@ -93,13 +90,29 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
             const activity = cpmActivities[i];
             if (activity.dependencies.length === 0) {
                 activity.ES = 0;
+                activity.startDate = new Date(startDate);
             } else {
-                activity.ES = Math.max(...activity.dependencies.map(depName => {
-                    const dep = cpmActivities.find(a => a.name === depName);
-                    return dep ? dep.EF : 0;
-                }));
+                // Her bağımlılık için ES değerlerini kontrol et
+                const dependencyEFs = activity.dependencies
+                    .map(depName => {
+                        // Virgülle ayrılmış bağımlılıkları işle
+                        const deps = depName.split(',').map(d => d.trim());
+                        // Her bir bağımlılık için EF değerlerini bul
+                        return deps.map(dep => {
+                            const depActivity = cpmActivities.find(a => a.name === dep);
+                            return depActivity ? depActivity.EF : 0;
+                        });
+                    })
+                    .flat(); // Tüm EF değerlerini düz bir diziye çevir
+
+                // En büyük EF değerini al
+                activity.ES = Math.max(...dependencyEFs);
+                activity.startDate = addDays(startDate, activity.ES);
             }
-            activity.EF = activity.ES + getDuration(activity);
+            
+            const duration = getDuration(activity);
+            activity.EF = activity.ES + duration;
+            activity.endDate = addDays(activity.startDate, duration);
         }
 
         // Find project duration
@@ -116,7 +129,8 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
                 activity.LF = Math.min(...dependents.map(dep => dep.LS));
             }
             
-            activity.LS = activity.LF - getDuration(activity);
+            const duration = getDuration(activity);
+            activity.LS = activity.LF - duration;
             activity.slack = activity.LS - activity.ES;
             activity.isOnCriticalPath = activity.slack === 0;
         }
