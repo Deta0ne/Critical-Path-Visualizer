@@ -7,7 +7,8 @@
         "actions": "Actions",
         "deletedActivity": "Activity deleted",
         "saveSuccess": "Successfully saved",
-        "required": "is required"
+        "required": "is required",
+        "selectStartDate": "Select Start Date"
         
     },
     "activity": {
@@ -35,6 +36,11 @@
         "expectedDuration": "Expected Duration",
         "ganttChart": "Gantt Chart"
     },
+    "table": {
+        "startDate": "Start Date",
+        "next": "Next",
+        "previous": "Previous"
+        },
     "errors": {
         "invalidInput": "Invalid input",
         "duplicateActivity": "Activity already exists",

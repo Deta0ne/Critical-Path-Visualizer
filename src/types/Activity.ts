@@ -6,6 +6,8 @@ export type Activity = {
     mostLikely: number;
     pessimistic: number;
     dependencies: string[];
+    x?: number;
+    y?: number;
 };
 
 export interface ActivityState {
@@ -29,4 +31,15 @@ export interface Node extends d3.SimulationNodeDatum {
 export interface Link extends d3.SimulationLinkDatum<Node> {
     source: Node;
     target: Node;
+}
+
+export interface ActivityStore {
+    activities: Activity[];
+    startDate: Date | undefined;
+    setStartDate: (date: Date | undefined) => void;
+    addActivity: () => void;
+    updateActivity: (id: number, data: Partial<Activity>) => void;
+    deleteActivity: (id: number) => void;
+    validateActivity: (activity: Activity) => z.SafeParseReturnType<Activity, Activity>;
+    calculateCPM: () => void;
 }

@@ -1,6 +1,15 @@
 import { create } from 'zustand';
 import { z } from 'zod';
-import { Activity, ActivityState } from '@/types/Activity';
+import { Activity, ActivityStore, Node } from '@/types/Activity';
+
+interface CPMActivity extends Node {
+    ES: number;  // Early Start
+    EF: number;  // Early Finish
+    LS: number;  // Late Start
+    LF: number;  // Late Finish
+    slack: number;
+    isOnCriticalPath: boolean;
+}
 
 export const activitySchema = z.object({
     id: z.number(),
@@ -16,8 +25,10 @@ export const activitySchema = z.object({
     path: ["times"]
 });
 
-export const useActivityStore = create<ActivityState>((set, get) => ({
+export const useActivityStore = create<ActivityStore>((set, get) => ({
     activities: [],
+    startDate: undefined,
+    setStartDate: (date) => set({ startDate: date }),
     
     addActivity: () => {
         const activities = get().activities;
@@ -51,5 +62,58 @@ export const useActivityStore = create<ActivityState>((set, get) => ({
 
     validateActivity: (activity: Activity) => {
         return activitySchema.safeParse(activity);
+    },
+
+    calculateCPM: () => {
+        const activities = get().activities as Node[];
+        const cpmActivities: CPMActivity[] = activities.map(activity => ({
+            ...activity,
+            ES: 0,
+            EF: 0,
+            LS: 0,
+            LF: 0,
+            slack: 0,
+            isOnCriticalPath: false
+        }));
+
+        // Helper function to calculate duration
+        const getDuration = (activity: Node) => {
+            return (activity.optimistic + 4 * activity.mostLikely + activity.pessimistic) / 6;
+        };
+
+        // Forward Pass
+        for (let i = 0; i < cpmActivities.length; i++) {
+            const activity = cpmActivities[i];
+            if (activity.dependencies.length === 0) {
+                activity.ES = 0;
+            } else {
+                activity.ES = Math.max(...activity.dependencies.map(depName => {
+                    const dep = cpmActivities.find(a => a.name === depName);
+                    return dep ? dep.EF : 0;
+                }));
+            }
+            activity.EF = activity.ES + getDuration(activity);
+        }
+
+        // Find project duration
+        const projectDuration = Math.max(...cpmActivities.map(a => a.EF));
+
+        // Backward Pass
+        for (let i = cpmActivities.length - 1; i >= 0; i--) {
+            const activity = cpmActivities[i];
+            const dependents = cpmActivities.filter(a => a.dependencies.includes(activity.name));
+
+            if (dependents.length === 0) {
+                activity.LF = projectDuration;
+            } else {
+                activity.LF = Math.min(...dependents.map(dep => dep.LS));
+            }
+            
+            activity.LS = activity.LF - getDuration(activity);
+            activity.slack = activity.LS - activity.ES;
+            activity.isOnCriticalPath = activity.slack === 0;
+        }
+
+        return cpmActivities;
     },
 })); 

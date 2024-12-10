@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { useActivityStore } from '@/store/use-activity-store';
 import { Node } from '@/types/Activity';
+import { format } from 'date-fns';
 
 const chartData = [
     { month: 'January', desktop: 186, mobile: 80 },
@@ -31,11 +32,15 @@ const expectedDuration = (activity: Node) => {
 };
 export function GanttChart() {
     const activities = useActivityStore((state) => state.activities as Node[]);
+    const startDate = useActivityStore((state) => state.startDate);
+    const cpmResults = useActivityStore.getState().calculateCPM();
+    console.log(cpmResults);
+
     return (
         <Card className="w-full h-full">
             <CardHeader className="pb-2">
                 <CardTitle>Gantt Chart</CardTitle>
-                <CardDescription>January - June 2024</CardDescription>
+                <CardDescription> {startDate ? format(startDate, 'PPP') : ''}</CardDescription>
             </CardHeader>
             <CardContent className="h-[calc(100%-80px)]">
                 <ChartContainer config={chartConfig} className="w-full h-full">

@@ -7,9 +7,10 @@ import { useActivityStore } from '@/store/use-activity-store';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '@/hooks/use-toast';
 import { Activity } from '@/types/Activity';
+import { DatePicker } from '@/components/ui/date-picker';
 
 export function DataTable() {
-    const { activities, updateActivity, addActivity, deleteActivity } = useActivityStore();
+    const { activities, updateActivity, addActivity, deleteActivity, startDate, setStartDate } = useActivityStore();
     const { t } = useTranslation();
     const { toast } = useToast();
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,12 +22,19 @@ export function DataTable() {
 
     const totalPages = Math.ceil(activities.length / itemsPerPage);
     const paginatedActivities = activities.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-
+    console.log(paginatedActivities);
     return (
-        <div className="h-full flex flex-col py-1">
-            <div className="flex justify-between items-center mb-2">
-                <h2 className="text-lg font-semibold">{t('activity.title')}</h2>
-                <Button onClick={addActivity} size="sm">
+        <div className="h-full flex flex-col">
+            <div className="flex justify-between items-center mb-2 gap-2">
+                <div className="flex items-center gap-4 justify-between w-full">
+                    <h2 className="text-lg font-semibold">{t('activity.title')}</h2>
+                    <DatePicker
+                        value={startDate}
+                        onChange={(date: Date | undefined) => setStartDate(date)}
+                        placeholder={t('common.selectStartDate')}
+                    />
+                </div>
+                <Button onClick={startDate ? addActivity : undefined} size="sm" disabled={!startDate}>
                     <Plus className="mr-2 h-4 w-4" /> {t('common.addActivity')}
                 </Button>
             </div>
@@ -85,15 +93,20 @@ export function DataTable() {
                                     </TableCell>
                                     <TableCell>
                                         <Input
+                                            type="text"
                                             value={activity.dependencies.join(', ')}
-                                            onChange={(e) =>
-                                                handleInputChange(
-                                                    activity.id,
-                                                    'dependencies',
-                                                    e.target.value.split(',').map((dep) => dep.trim()),
-                                                )
-                                            }
-                                            placeholder="e.g. Activity 1, Activity 2"
+                                            onChange={(e) => {
+                                                const rawValue = e.target.value;
+                                                handleInputChange(activity.id, 'dependencies', [rawValue]);
+                                            }}
+                                            onBlur={(e) => {
+                                                const deps = e.target.value
+                                                    .split(',')
+                                                    .map((dep) => dep.trim())
+                                                    .filter((dep) => dep !== '');
+                                                handleInputChange(activity.id, 'dependencies', deps);
+                                            }}
+                                            placeholder="e.g. 1-2, 2-3"
                                         />
                                     </TableCell>
                                     <TableCell>
@@ -129,7 +142,7 @@ export function DataTable() {
                                 disabled={currentPage === 1}
                                 onClick={() => setCurrentPage((p) => p - 1)}
                             >
-                                {t('common.previous')}
+                                {t('table.previous')}
                             </Button>
                             <Button
                                 size="sm"
@@ -137,7 +150,7 @@ export function DataTable() {
                                 disabled={currentPage === totalPages}
                                 onClick={() => setCurrentPage((p) => p + 1)}
                             >
-                                {t('common.next')}
+                                {t('table.next')}
                             </Button>
                         </div>
                     </div>

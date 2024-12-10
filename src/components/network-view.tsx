@@ -23,8 +23,8 @@ export function NetworkView() {
         // Create links from dependencies
         const links: Link[] = activities
             .flatMap((activity) =>
-                activity.dependencies.map((depId) => ({
-                    source: activities.find((a) => a.id.toString() === depId)!,
+                activity.dependencies.map((depName) => ({
+                    source: activities.find((a) => a.name === depName)!,
                     target: activity,
                 })),
             )
