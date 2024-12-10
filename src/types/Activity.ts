@@ -6,8 +6,6 @@ export type Activity = {
     mostLikely: number;
     pessimistic: number;
     dependencies: string[];
-    x?: number;
-    y?: number;
 };
 
 export interface ActivityState {
@@ -25,8 +23,6 @@ export interface Node extends d3.SimulationNodeDatum {
     mostLikely: number;
     pessimistic: number;
     dependencies: string[];
-    x?: number;
-    y?: number;
 }
 export interface Link extends d3.SimulationLinkDatum<Node> {
     source: Node;

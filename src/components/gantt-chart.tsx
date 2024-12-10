@@ -34,7 +34,9 @@ export function GanttChart() {
     const activities = useActivityStore((state) => state.activities as Node[]);
     const startDate = useActivityStore((state) => state.startDate);
     const cpmResults = useActivityStore.getState().calculateCPM();
-    console.log(cpmResults);
+    console.log('cpmResults', cpmResults);
+    console.log('activities', activities);
+    console.log('startDate', startDate);
 
     return (
         <Card className="w-full h-full">

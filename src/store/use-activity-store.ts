@@ -1,14 +1,21 @@
 import { create } from 'zustand';
 import { z } from 'zod';
-import { Activity, ActivityStore, Node } from '@/types/Activity';
+import { Activity, ActivityStore } from '@/types/Activity';
 
-interface CPMActivity extends Node {
+export interface CPMActivity {
     ES: number;  // Early Start
     EF: number;  // Early Finish
     LS: number;  // Late Start
     LF: number;  // Late Finish
     slack: number;
     isOnCriticalPath: boolean;
+    dependencies: string[];
+    name: string;
+    optimistic: number;
+    mostLikely: number;
+    pessimistic: number;
+    id: number;
+
 }
 
 export const activitySchema = z.object({
@@ -65,7 +72,7 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
     },
 
     calculateCPM: () => {
-        const activities = get().activities as Node[];
+        const activities = get().activities;
         const cpmActivities: CPMActivity[] = activities.map(activity => ({
             ...activity,
             ES: 0,
@@ -77,7 +84,7 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
         }));
 
         // Helper function to calculate duration
-        const getDuration = (activity: Node) => {
+        const getDuration = (activity: CPMActivity) => {
             return (activity.optimistic + 4 * activity.mostLikely + activity.pessimistic) / 6;
         };
 
