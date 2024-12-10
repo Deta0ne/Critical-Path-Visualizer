@@ -10,7 +10,8 @@
         "actions": "İşlemler",
         "deletedActivity": "Aktivite silindi",
         "saveSuccess": "Başarıyla kaydedildi",
-        "required": "gereklidir"
+        "required": "gereklidir",
+        "selectStartDate": "Başlangıç Tarihi Seçin"
     },
     "activity": {
         "title": "Aktiviteler",
@@ -24,7 +25,14 @@
         "latestStart": "En Geç Başlangıç",
         "latestFinish": "En Geç Bitiş",
         "slack": "Bolluk",
-        "dependencies": "Bağımlılıklar"
+        "dependencies": "Bağımlılıklar",
+        "expectedDuration": "Beklenen Süre"
+
+    },
+    "table": {
+        "startDate": "Başlangıç Tarihi",
+        "next": "Sonraki",
+        "previous": "Önceki"
     },
     "analysis": {
         "criticalPath": "Kritik Yol",
@@ -32,7 +40,8 @@
         "standardDeviation": "Standart Sapma",
         "variance": "Varyans",
         "networkDiagram": "Ağ Diyagramı",
-        "expectedDuration": "Beklenen Süre"
+        "expectedDuration": "Beklenen Süre",
+        "ganttChart": "Gantt Çizelgesi"
     },
     "errors": {
         "invalidInput": "Geçersiz giriş",

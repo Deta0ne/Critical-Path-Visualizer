@@ -23,10 +23,35 @@ export interface Node extends d3.SimulationNodeDatum {
     mostLikely: number;
     pessimistic: number;
     dependencies: string[];
-    x?: number;
-    y?: number;
 }
 export interface Link extends d3.SimulationLinkDatum<Node> {
     source: Node;
     target: Node;
+}
+
+export interface ActivityStore {
+    activities: Activity[];
+    startDate: Date | undefined;
+    setStartDate: (date: Date | undefined) => void;
+    addActivity: () => void;
+    updateActivity: (id: number, data: Partial<Activity>) => void;
+    deleteActivity: (id: number) => void;
+    validateActivity: (activity: Activity) => z.SafeParseReturnType<Activity, Activity>;
+    calculateCPM: () => CPMActivity[];
+}
+export interface CPMActivity {
+    ES: number;  // Early Start (gün olarak)
+    EF: number;  // Early Finish (gün olarak)
+    LS: number;  // Late Start (gün olarak)
+    LF: number;  // Late Finish (gün olarak)
+    startDate: Date;  // Başlangıç tarihi
+    endDate: Date;    // Bitiş tarihi
+    slack: number;
+    isOnCriticalPath: boolean;
+    dependencies: string[];
+    name: string;
+    optimistic: number;
+    mostLikely: number;
+    pessimistic: number;
+    id: number;
 }

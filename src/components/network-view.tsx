@@ -23,8 +23,8 @@ export function NetworkView() {
         // Create links from dependencies
         const links: Link[] = activities
             .flatMap((activity) =>
-                activity.dependencies.map((depId) => ({
-                    source: activities.find((a) => a.id.toString() === depId)!,
+                activity.dependencies.map((depName) => ({
+                    source: activities.find((a) => a.name === depName)!,
                     target: activity,
                 })),
             )
@@ -130,10 +130,10 @@ export function NetworkView() {
     }, [activities, theme]);
 
     return (
-        <div className="border rounded-lg  bg-muted">
-            <div className="w-full h-[500px] overflow-hidden">
-                <h2 className="text-lg font-semibold">Network View</h2>
-                <svg ref={svgRef} className="w-full h-full" />
+        <div className="border rounded-lg bg-muted h-full">
+            <div className="w-full h-full overflow-hidden">
+                <h2 className="text-lg font-semibold p-2">Network View</h2>
+                <svg ref={svgRef} className="w-full h-[calc(100%-40px)]" />
             </div>
         </div>
     );
