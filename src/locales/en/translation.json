@@ -8,7 +8,10 @@
         "deletedActivity": "Activity deleted",
         "saveSuccess": "Successfully saved",
         "required": "is required",
-        "selectStartDate": "Select Start Date"
+        "selectStartDate": "Select Start Date",
+        "importExcel": "Import Excel",
+        "dataImported": "Data imported successfully"
+
         
     },
     "activity": {

@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import { z } from 'zod';
-import { Activity, ActivityStore,CPMActivity } from '@/types/Activity';
-
-
+import { Activity, ActivityStore,CPMActivity, NormalizedExcelRow } from '@/types/Activity';
+import * as XLSX from 'xlsx';
+import { toast } from '@/hooks/use-toast';
 
 export const activitySchema = z.object({
     id: z.number(),
@@ -17,6 +17,20 @@ export const activitySchema = z.object({
     message: "Times must be in order: optimistic <= most likely <= pessimistic",
     path: ["times"]
 });
+
+export const excelActivitySchema = z.object({
+    name: z.string().min(1, 'Activity name is required'),
+    optimistic: z.number().min(0, 'Must be positive'),
+    mostLikely: z.number().min(0, 'Must be positive'),
+    pessimistic: z.number().min(0, 'Must be positive'),
+    dependencies: z.string().optional(),
+}).refine((data) => {
+    return data.optimistic <= data.mostLikely && data.mostLikely <= data.pessimistic;
+}, {
+    message: "Times must be in order: optimistic <= most likely <= pessimistic",
+    path: ["times"]
+});
+
 
 export const useActivityStore = create<ActivityStore>((set, get) => ({
     activities: [],
@@ -73,39 +87,32 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
             isOnCriticalPath: false
         }));
 
-        // Helper function to calculate duration
         const getDuration = (activity: CPMActivity) => {
             return Math.round((activity.optimistic + 4 * activity.mostLikely + activity.pessimistic) / 6);
         };
 
-        // Helper function to add days to a date
         const addDays = (date: Date, days: number) => {
             const result = new Date(date);
             result.setDate(result.getDate() + days);
             return result;
         };
 
-        // Forward Pass
         for (let i = 0; i < cpmActivities.length; i++) {
             const activity = cpmActivities[i];
             if (activity.dependencies.length === 0) {
                 activity.ES = 0;
                 activity.startDate = new Date(startDate);
             } else {
-                // Her bağımlılık için ES değerlerini kontrol et
                 const dependencyEFs = activity.dependencies
                     .map(depName => {
-                        // Virgülle ayrılmış bağımlılıkları işle
                         const deps = depName.split(',').map(d => d.trim());
-                        // Her bir bağımlılık için EF değerlerini bul
                         return deps.map(dep => {
                             const depActivity = cpmActivities.find(a => a.name === dep);
                             return depActivity ? depActivity.EF : 0;
                         });
                     })
-                    .flat(); // Tüm EF değerlerini düz bir diziye çevir
+                    .flat();
 
-                // En büyük EF değerini al
                 activity.ES = Math.max(...dependencyEFs);
                 activity.startDate = addDays(startDate, activity.ES);
             }
@@ -115,10 +122,8 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
             activity.endDate = addDays(activity.startDate, duration);
         }
 
-        // Find project duration
         const projectDuration = Math.max(...cpmActivities.map(a => a.EF));
 
-        // Backward Pass
         for (let i = cpmActivities.length - 1; i >= 0; i--) {
             const activity = cpmActivities[i];
             const dependents = cpmActivities.filter(a => a.dependencies.includes(activity.name));
@@ -136,5 +141,105 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
         }
 
         return cpmActivities;
+    },
+
+    handleFileUpload: (file: File) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            if (!e.target?.result) return;
+
+            const data = new Uint8Array(e.target.result as ArrayBuffer);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+            const rawJsonData = XLSX.utils.sheet_to_json(worksheet);
+
+            const normalizeFieldName = (key: string): string => 
+                key.toLowerCase().replace(/[\s_-]/g, '');
+
+            const fieldMappings = {
+                name: ['name', 'activityname', 'activity', 'taskname', 'task'],
+                optimistic: ['optimistic', 'optimistictime', 'opttime', 'mintime'],
+                mostLikely: ['mostlikely', 'likely', 'normaltime', 'expectedtime'],
+                pessimistic: ['pessimistic', 'pessimistictime', 'maxtime'],
+                dependencies: ['dependencies', 'dependson', 'prerequisite', 'depends']
+            };
+
+            const jsonData = (rawJsonData as unknown[]).map((row) => {
+                if (typeof row !== 'object' || row === null) {
+                    return {};
+                }
+
+                const normalizedRow: NormalizedExcelRow = {};
+                const rowData = row as Record<string, unknown>;
+                
+                Object.entries(rowData).forEach(([key, value]) => {
+                    const normalizedKey = normalizeFieldName(key);
+                    
+                    for (const [fieldName, alternatives] of Object.entries(fieldMappings)) {
+                        if (alternatives.includes(normalizedKey)) {
+                            switch(fieldName) {
+                                case 'name':
+                                case 'dependencies':
+                                    normalizedRow[fieldName] = String(value);
+                                    break;
+                                case 'optimistic':
+                                case 'mostLikely':
+                                case 'pessimistic':
+                                    normalizedRow[fieldName] = Number(value);
+                                    break;
+                            }
+                            break;
+                        }
+                    }
+                });
+
+                return normalizedRow;
+            });
+
+            const currentActivities = get().activities;
+            let nextId = currentActivities.length > 0 
+                ? Math.max(...currentActivities.map(a => a.id)) + 1 
+                : 1;
+
+            const newActivities = [...currentActivities];
+
+            jsonData.forEach((row: unknown) => {
+                const result = excelActivitySchema.safeParse(row);
+                
+                if (result.success) {
+                    const validatedData = result.data;
+                    const newName = validatedData.name;
+                    const isDuplicate = currentActivities.some(activity => activity.name === newName);
+
+                    if (!isDuplicate) {
+                        const newActivity: Activity = {
+                            id: nextId++,
+                            name: newName,
+                            optimistic: validatedData.optimistic,
+                            mostLikely: validatedData.mostLikely,
+                            pessimistic: validatedData.pessimistic,
+                            dependencies: validatedData.dependencies ? validatedData.dependencies.split(',').map(d => d.trim()) : [],
+                        };
+                        
+                        newActivities.push(newActivity);
+                    }
+                } else {
+                    console.error('Invalid row data:', result.error);
+                    toast({
+                        title: 'Error',
+                        description: `Invalid data in Excel: ${result.error.message}`,
+                        variant: 'destructive'
+                    });
+                }
+            });
+
+            set({ activities: newActivities });
+
+            toast({
+                title: 'Data imported successfully',
+            });
+        };
+        reader.readAsArrayBuffer(file);
     },
 })); 

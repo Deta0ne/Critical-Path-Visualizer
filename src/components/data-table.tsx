@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, Upload } from 'lucide-react';
 import { useActivityStore } from '@/store/use-activity-store';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '@/hooks/use-toast';
@@ -10,11 +10,19 @@ import { Activity } from '@/types/Activity';
 import { DatePicker } from '@/components/ui/date-picker';
 
 export function DataTable() {
-    const { activities, updateActivity, addActivity, deleteActivity, startDate, setStartDate } = useActivityStore();
+    const { activities, updateActivity, addActivity, deleteActivity, startDate, setStartDate, handleFileUpload } =
+        useActivityStore();
     const { t } = useTranslation();
     const { toast } = useToast();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 7;
+
+    const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file && startDate) {
+            handleFileUpload(file);
+        }
+    };
 
     const handleInputChange = (id: number, field: keyof Activity, value: string | number | string[]) => {
         updateActivity(id, { [field]: value });
@@ -23,16 +31,40 @@ export function DataTable() {
     const totalPages = Math.ceil(activities.length / itemsPerPage);
     const paginatedActivities = activities.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
     console.log(paginatedActivities);
+
     return (
         <div className="h-full flex flex-col">
             <div className="flex justify-between items-center mb-2 gap-2">
                 <div className="flex items-center gap-4 justify-between w-full">
                     <h2 className="text-lg font-semibold">{t('activity.title')}</h2>
-                    <DatePicker
-                        value={startDate}
-                        onChange={(date: Date | undefined) => setStartDate(date)}
-                        placeholder={t('common.selectStartDate')}
-                    />
+                    <div className="flex items-center gap-2">
+                        <DatePicker
+                            value={startDate}
+                            onChange={(date: Date | undefined) => {
+                                if (date) {
+                                    setStartDate(date);
+                                }
+                            }}
+                            placeholder={t('common.selectStartDate')}
+                        />
+                        <input
+                            type="file"
+                            id="excel-upload"
+                            className="hidden"
+                            accept=".xlsx,.xls"
+                            onChange={onFileChange}
+                            disabled={!startDate}
+                        />
+                        <Button
+                            onClick={() => document.getElementById('excel-upload')?.click()}
+                            size="sm"
+                            variant="outline"
+                            disabled={!startDate}
+                        >
+                            <Upload className="mr-2 h-4 w-4" />
+                            {t('common.importExcel')}
+                        </Button>
+                    </div>
                 </div>
                 <Button onClick={startDate ? addActivity : undefined} size="sm" disabled={!startDate}>
                     <Plus className="mr-2 h-4 w-4" /> {t('common.addActivity')}
