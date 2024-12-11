@@ -38,13 +38,19 @@
         "previous": "Önceki"
     },
     "analysis": {
+        "projectStatistics": "Proje İstatistikleri",
         "criticalPath": "Kritik Yol",
         "projectDuration": "Proje Süresi",
         "standardDeviation": "Standart Sapma",
         "variance": "Varyans",
-        "networkDiagram": "Ağ Diyagramı",
         "expectedDuration": "Beklenen Süre",
-        "ganttChart": "Gantt Çizelgesi"
+        "totalVariance": "Toplam Varyans",
+        "confidenceInterval": "Güven Aralığı",
+        "durationRange": "Süre Aralığı",
+        "networkDiagram": "Ağ Diyagramı",
+        "ganttChart": "Gantt Çizelgesi",
+        "completionProbability": "Tamamlama Olasılığı",
+        "days": "gün"
     },
     "errors": {
         "invalidInput": "Geçersiz giriş",

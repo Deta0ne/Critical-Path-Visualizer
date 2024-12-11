@@ -18,9 +18,9 @@
         "title": "Activities",
         "name": "Activity Name",
         "duration": "Duration",
-        "optimistic": "Optimistic Time",
-        "mostLikely": "Most Likely Time",
-        "pessimistic": "Pessimistic Time",
+        "optimistic": "Optimistic",
+        "mostLikely": "Most Likely",
+        "pessimistic": "Pessimistic",
         "earliestStart": "Earliest Start",
         "earliestFinish": "Earliest Finish",
         "latestStart": "Latest Start",
@@ -31,13 +31,19 @@
        
     },
     "analysis": {
+        "projectStatistics": "Project Statistics",
         "criticalPath": "Critical Path",
         "projectDuration": "Project Duration",
         "standardDeviation": "Standard Deviation",
+        "totalVariance": "Total Variance",
+        "confidenceInterval": "Confidence Interval",
+        "durationRange": "Duration Range",
+        "expectedDuration": "Expected Duration",
+        "completionProbability": "Completion Probability",
         "variance": "Variance",
         "networkDiagram": "Network Diagram",
-        "expectedDuration": "Expected Duration",
-        "ganttChart": "Gantt Chart"
+        "ganttChart": "Gantt Chart",
+        "days": "days"
     },
     "table": {
         "startDate": "Start Date",

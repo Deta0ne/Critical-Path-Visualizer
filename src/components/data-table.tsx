@@ -195,7 +195,7 @@ export function DataTable() {
                 </Table>
             </div>
             {activities.length > 0 && (
-                <div className="p-2 border-t mt-auto">
+                <div className="p-2 border-t mt-auto pb-0">
                     <div className="flex justify-center">
                         <div className="flex gap-1">
                             <Button
