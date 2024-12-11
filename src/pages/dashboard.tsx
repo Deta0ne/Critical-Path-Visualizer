@@ -3,13 +3,15 @@ import { DataTable } from '@/components/data-table';
 import { NetworkView } from '@/components/network-view';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { GanttChart } from '@/components/gantt-chart';
+import PertPanel from '@/components/pert-panel';
 
 export default function DashboardPage() {
     const { t } = useTranslation();
     return (
-        <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">{t('pages.dashboard.title')}</h1>
-            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6 h-[510px]">
+        <div className="p-4 space-y-6">
+            <h1 className="text-2xl font-bold">{t('pages.dashboard.title')}</h1>
+
+            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
                 <div className="h-[510px]">
                     <DataTable />
                 </div>
@@ -27,6 +29,10 @@ export default function DashboardPage() {
                         </TabsContent>
                     </Tabs>
                 </div>
+            </div>
+
+            <div className="h-auto">
+                <PertPanel />
             </div>
         </div>
     );
