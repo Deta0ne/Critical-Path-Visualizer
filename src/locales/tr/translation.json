@@ -92,7 +92,9 @@
         },
         "projects": {
             "title": "Projeler",
-            "description": "Projelerinizi yönetin"
+            "description": "Projelerinizi yönetin",
+            "noProjects": "Henüz kaydedilmiş proje bulunmuyor",
+            "noProjectsDescription": "Dashboard sayfasından aktivitelerinizi oluşturup kaydedebilirsiniz"
         },
         "calendar": {
             "title": "Takvim",

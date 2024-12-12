@@ -27,10 +27,8 @@ export default function ProjectsPage() {
 
             {savedActivities.length === 0 ? (
                 <div className="text-center py-10">
-                    <h3 className="text-lg font-medium text-gray-500">Henüz kaydedilmiş proje bulunmuyor</h3>
-                    <p className="text-sm text-gray-400 mt-2">
-                        Dashboard sayfasından aktivitelerinizi oluşturup kaydedebilirsiniz
-                    </p>
+                    <h3 className="text-lg font-medium text-gray-500">{t('pages.projects.noProjects')}</h3>
+                    <p className="text-sm text-gray-400 mt-2">{t('pages.projects.noProjectsDescription')}</p>
                 </div>
             ) : (
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

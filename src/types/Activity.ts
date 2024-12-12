@@ -78,3 +78,19 @@ export interface SaveActivitiesStore {
   loadSavedActivities: (id: string) => void;
   deleteSavedActivities: (id: string) => void;
 }
+
+export interface PertCalculation {
+  criticalPath: CPMActivity[];
+  projectDuration: number;
+  totalVariance: number;
+  standardDeviation: number;
+  probabilityDurations: {
+    probability: number;
+    duration: string;
+  }[];
+}
+
+export interface PertStore {
+  calculations: PertCalculation | null;
+  calculatePertMetrics: (activities: Activity[], cpmResults: CPMActivity[]) => void;
+}

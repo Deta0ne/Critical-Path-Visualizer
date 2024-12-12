@@ -88,7 +88,9 @@
         },
         "projects": {
             "title": "Projects",
-            "description": "Manage your projects"
+            "description": "Manage your projects",
+            "noProjects": "No projects found",
+            "noProjectsDescription": "Create and save activities from the Dashboard page"
         },
         "calendar": {
             "title": "Calendar",
