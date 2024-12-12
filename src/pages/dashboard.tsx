@@ -7,6 +7,7 @@ import PertPanel from '@/components/pert-panel';
 
 export default function DashboardPage() {
     const { t } = useTranslation();
+
     return (
         <div className="p-4 space-y-6">
             <h1 className="text-2xl font-bold">{t('pages.dashboard.title')}</h1>

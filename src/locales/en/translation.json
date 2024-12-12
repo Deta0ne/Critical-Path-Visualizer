@@ -4,6 +4,7 @@
         "addActivity": "Add Activity",
         "edit": "Edit",
         "delete": "Delete",
+        "load": "Load",
         "actions": "Actions",
         "deletedActivity": "Activity deleted",
         "saveSuccess": "Successfully saved",
@@ -15,6 +16,7 @@
         
     },
     "activity": {
+        "activitie": "activity",
         "title": "Activities",
         "name": "Activity Name",
         "duration": "Duration",
@@ -43,12 +45,23 @@
         "variance": "Variance",
         "networkDiagram": "Network Diagram",
         "ganttChart": "Gantt Chart",
-        "days": "days"
+        "days": "days",
+        "noProjects": "No projects found",
+        "setStartDate": "Please set a start date",
+        "addActivities": "Add activities to see PERT calculations"
+    },
+    "projectNotifications": {
+        "saveSuccess": "Successful",
+        "saveDescription": "named activity set was recorded.",
+        "saveName": "Activity set name",
+        "saveButton": "Save Activities",
+        "deleteSuccess": "Project deleted",
+        "deleteDescription": "Project was deleted successfully.",
+        "loadSuccess": "Project loaded",
+        "loadDescription": "Project was loaded successfully. You are being redirected to the Dashboard page."
     },
     "table": {
-        "startDate": "Start Date",
-        "next": "Next",
-        "previous": "Previous"
+        "startDate": "Start Date"
         },
     "errors": {
         "invalidInput": "Invalid input",

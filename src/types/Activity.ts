@@ -39,6 +39,7 @@ export interface ActivityStore {
     validateActivity: (activity: Activity) => z.SafeParseReturnType<Activity, Activity>;
     calculateCPM: () => CPMActivity[];
     handleFileUpload: (file: File) => void;
+    setActivities: (activities: Activity[]) => void;
 }
 export interface CPMActivity {
     ES: number; 
@@ -63,4 +64,17 @@ export interface NormalizedExcelRow {
     mostLikely?: number;
     pessimistic?: number;
     dependencies?: string;
+}
+
+export interface SavedActivity {
+    id: string;
+    name: string;
+    activities: Activity[]; 
+  }
+
+export interface SaveActivitiesStore {
+  savedActivities: SavedActivity[];
+  saveCurrentActivities: (name: string, activities: Activity[]) => void;
+  loadSavedActivities: (id: string) => void;
+  deleteSavedActivities: (id: string) => void;
 }

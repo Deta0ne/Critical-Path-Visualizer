@@ -242,4 +242,8 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
         };
         reader.readAsArrayBuffer(file);
     },
+
+    setActivities: (activities: Activity[]) => {
+        set({ activities });
+    },
 })); 

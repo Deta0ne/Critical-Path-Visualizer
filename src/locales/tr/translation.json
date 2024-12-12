@@ -4,6 +4,7 @@
         "addActivity": "Aktivite Ekle",
         "edit": "Düzenle",
         "delete": "Sil",
+        "load": "Yükle",
         "save": "Kaydet",
         "cancel": "İptal",
         "close": "Kapat",
@@ -17,6 +18,7 @@
 
     },
     "activity": {
+        "activitie": "aktivite",
         "title": "Aktiviteler",
         "name": "Aktivite Adı",
         "duration": "Süre",
@@ -31,6 +33,16 @@
         "dependencies": "Bağımlılıklar",
         "expectedDuration": "Beklenen Süre"
       
+    },
+    "projectNotifications": {
+        "saveSuccess": "Başarılı",
+        "saveDescription": "isimli aktivite seti kaydedildi.",
+        "saveName": "Aktivite seti adı",
+        "saveButton": "Aktiviteleri Kaydet",
+        "deleteSuccess": "Proje silindi",
+        "deleteDescription": "Proje başarıyla silindi.",
+        "loadSuccess": "Proje yüklendi",
+        "loadDescription": "Proje başarıyla yüklendi. Dashboard sayfasına yönlendiriliyorsunuz."
     },
     "table": {
         "startDate": "Başlangıç Tarihi",
@@ -50,7 +62,10 @@
         "networkDiagram": "Ağ Diyagramı",
         "ganttChart": "Gantt Çizelgesi",
         "completionProbability": "Tamamlama Olasılığı",
-        "days": "gün"
+        "days": "gün",
+        "noProjects": "Proje bulunamadı",
+        "setStartDate": "Lütfen başlangıç tarihini belirleyin",
+        "addActivities": "Aktiviteleri görüntüleyin PERT hesaplamaları"
     },
     "errors": {
         "invalidInput": "Geçersiz giriş",

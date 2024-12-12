@@ -15,7 +15,7 @@ const PertPanel = () => {
     if (!startDate || activities.length === 0) {
         return (
             <div className="p-4 text-center">
-                {!startDate ? t('Please set a start date') : t('Add activities to see PERT calculations')}
+                {!startDate ? t('analysis.setStartDate') : t('analysis.addActivities')}
             </div>
         );
     }
