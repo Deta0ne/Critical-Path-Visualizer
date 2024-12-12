@@ -69,8 +69,9 @@ export interface NormalizedExcelRow {
 export interface SavedActivity {
     id: string;
     name: string;
-    activities: Activity[]; 
-  }
+    activities: Activity[];
+    startDate: Date;
+}
 
 export interface SaveActivitiesStore {
   savedActivities: SavedActivity[];

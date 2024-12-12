@@ -14,8 +14,11 @@
         "required": "gereklidir",
         "selectStartDate": "Başlangıç Tarihi Seçin",
         "importExcel": "Excel'den İçe Aktar",
-        "dataImported": "Veri başarıyla içe aktarıldı"
-
+        "dataImported": "Veri başarıyla içe aktarıldı",
+        "startDate": "Başlangıç Tarihi",
+        "estimatedEndDate": "Tahmini Bitiş Tarihi",
+        "next": "Sonraki",
+        "previous": "Önceki"
     },
     "activity": {
         "activitie": "aktivite",
@@ -43,11 +46,6 @@
         "deleteDescription": "Proje başarıyla silindi.",
         "loadSuccess": "Proje yüklendi",
         "loadDescription": "Proje başarıyla yüklendi. Dashboard sayfasına yönlendiriliyorsunuz."
-    },
-    "table": {
-        "startDate": "Başlangıç Tarihi",
-        "next": "Sonraki",
-        "previous": "Önceki"
     },
     "analysis": {
         "projectStatistics": "Proje İstatistikleri",

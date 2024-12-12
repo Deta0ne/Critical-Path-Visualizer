@@ -11,9 +11,10 @@
         "required": "is required",
         "selectStartDate": "Select Start Date",
         "importExcel": "Import Excel",
-        "dataImported": "Data imported successfully"
-
-        
+        "dataImported": "Data imported successfully",
+        "startDate": "Start Date",
+        "next": "Next",
+        "previous": "Previous"
     },
     "activity": {
         "activitie": "activity",
@@ -60,9 +61,6 @@
         "loadSuccess": "Project loaded",
         "loadDescription": "Project was loaded successfully. You are being redirected to the Dashboard page."
     },
-    "table": {
-        "startDate": "Start Date"
-        },
     "errors": {
         "invalidInput": "Invalid input",
         "duplicateActivity": "Activity already exists",

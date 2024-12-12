@@ -3,12 +3,26 @@ import { useSaveActivitiesStore } from '@/store/save-activities-store';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
+import { addBusinessDays } from '@/lib/date-utils';
+import { CalendarDays } from 'lucide-react';
+import { SavedActivity } from '@/types/Activity';
 
 export default function ProjectsPage() {
     const { t } = useTranslation();
     const { savedActivities, loadSavedActivities, deleteSavedActivities } = useSaveActivitiesStore();
     const { toast } = useToast();
     const navigate = useNavigate();
+
+    const getEstimatedEndDate = (saved: SavedActivity) => {
+        const totalDuration = saved.activities.reduce((sum, activity) => {
+            const expectedDuration = Math.round(
+                (activity.optimistic + 4 * activity.mostLikely + activity.pessimistic) / 6,
+            );
+            return sum + expectedDuration;
+        }, 0);
+
+        return addBusinessDays(new Date(saved.startDate), totalDuration);
+    };
 
     const handleLoadProject = (id: string) => {
         loadSavedActivities(id);
@@ -36,14 +50,30 @@ export default function ProjectsPage() {
                         <div key={saved.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
                             <div className="flex flex-col h-full">
                                 <div className="flex-1">
-                                    <h3 className="font-semibold text-lg mb-2">{saved.name}</h3>
-                                    <div className="text-sm text-gray-500">
-                                        <p>
+                                    <h3 className="font-semibold text-lg mb-2 text-center">{saved.name}</h3>
+                                    <div className="text-sm text-gray-500 space-y-2">
+                                        <p className="text-center">
                                             {saved.activities.length} {t('activity.activitie')}
                                         </p>
+                                        <div className="mt-2 space-y-1.5 flex flex-col items-center">
+                                            <p className="flex items-center gap-2 text-muted-foreground">
+                                                <CalendarDays className="w-4 h-4" />
+                                                <span>{t('common.startDate')}:</span>
+                                                <span className="font-medium text-foreground">
+                                                    {new Date(saved.startDate).toLocaleDateString()}
+                                                </span>
+                                            </p>
+                                            <p className="flex items-center gap-2 text-muted-foreground">
+                                                <CalendarDays className="w-4 h-4" />
+                                                <span>{t('common.estimatedEndDate')}:</span>
+                                                <span className="font-medium text-foreground">
+                                                    {getEstimatedEndDate(saved).toLocaleDateString()}
+                                                </span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="flex gap-2 mt-4 pt-4 border-t">
+                                <div className="flex gap-2 mt-4 pt-4 border-t justify-center">
                                     <Button
                                         className="flex-1"
                                         variant="outline"

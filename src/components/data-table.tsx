@@ -207,7 +207,7 @@ export function DataTable() {
                                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                                 disabled={currentPage === 1}
                             >
-                                {t('table.previous')}
+                                {t('common.previous')}
                             </Button>
 
                             {renderPageButtons()}
@@ -218,7 +218,7 @@ export function DataTable() {
                                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                                 disabled={currentPage === totalPages}
                             >
-                                {t('table.next')}
+                                {t('common.next')}
                             </Button>
                         </div>
                     </div>
