@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { addBusinessDays } from '@/lib/date-utils';
 import { CalendarDays } from 'lucide-react';
 import { SavedActivity } from '@/types/Activity';
-import { AddToCalendarButton } from 'add-to-calendar-button-react';
+import AddToCalendar from '@/components/AddToCalendar';
 
 export default function ProjectsPage() {
     const { t } = useTranslation();
@@ -23,10 +23,6 @@ export default function ProjectsPage() {
         }, 0);
 
         return addBusinessDays(new Date(saved.startDate), totalDuration);
-    };
-
-    const formatDateForCalendar = (date: Date) => {
-        return date.toISOString().split('T')[0];
     };
 
     const handleLoadProject = (id: string) => {
@@ -72,24 +68,11 @@ export default function ProjectsPage() {
                                                 </span>
                                             </p>
                                             <div className="mt-3">
-                                                <AddToCalendarButton
+                                                <AddToCalendar
                                                     name={saved.name}
                                                     description={`Proje: ${saved.name}\nAktivite Sayısı: ${saved.activities.length}`}
-                                                    startDate={formatDateForCalendar(new Date(saved.startDate))}
-                                                    endDate={formatDateForCalendar(getEstimatedEndDate(saved))}
-                                                    options={[
-                                                        'Apple',
-                                                        'Google',
-                                                        'iCal',
-                                                        'Microsoft365',
-                                                        'Outlook.com',
-                                                        'Yahoo',
-                                                    ]}
-                                                    timeZone="Europe/Istanbul"
-                                                    buttonStyle="3d"
-                                                    size="2"
-                                                    label={t('common.addToCalendar')}
-                                                    language="tr"
+                                                    startDate={new Date(saved.startDate).toISOString()}
+                                                    endDate={getEstimatedEndDate(saved).toISOString()}
                                                 />
                                             </div>
                                         </div>
