@@ -17,16 +17,16 @@ export default function DashboardPage() {
                     <DataTable />
                 </div>
                 <div className="h-[510px]">
-                    <Tabs defaultValue="network" className="h-full">
+                    <Tabs defaultValue="gantt" className="h-full">
                         <TabsList>
                             <TabsTrigger value="network">{t('analysis.networkDiagram')}</TabsTrigger>
                             <TabsTrigger value="gantt">{t('analysis.ganttChart')}</TabsTrigger>
                         </TabsList>
-                        <TabsContent value="network" className="h-[calc(100%-47px)]">
-                            <NetworkView />
-                        </TabsContent>
                         <TabsContent value="gantt" className="h-[calc(100%-47px)]">
                             <GanttChart />
+                        </TabsContent>
+                        <TabsContent value="network" className="h-[calc(100%-47px)]">
+                            <NetworkView />
                         </TabsContent>
                     </Tabs>
                 </div>

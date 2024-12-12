@@ -1,13 +1,24 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import * as d3 from 'd3';
 import { useTheme } from '@/components/theme-provider';
 import { useActivityStore } from '@/store/use-activity-store';
 import { Node, Link } from '@/types/Activity';
+import { Button } from '@/components/ui/button';
+import { Maximize2, Minimize2 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export function NetworkView() {
+    const [isExpanded, setIsExpanded] = useState(false);
     const svgRef = useRef<SVGSVGElement>(null);
     const { theme } = useTheme();
     const activities = useActivityStore((state) => state.activities as Node[]);
+    const startDate = useActivityStore((state) => state.startDate);
+    const calculateCPM = useActivityStore((state) => state.calculateCPM);
+
+    const cpmResults = useMemo(() => {
+        if (!startDate || !activities.length) return [];
+        return calculateCPM();
+    }, [activities, startDate, calculateCPM]);
 
     useEffect(() => {
         if (!svgRef.current || !activities.length) return;
@@ -20,15 +31,23 @@ export function NetworkView() {
         const height = 500;
         const nodeRadius = 40;
 
-        // Create links from dependencies
+        // Create links from dependencies and mark critical path links
         const links: Link[] = activities
             .flatMap((activity) =>
-                activity.dependencies.map((depName) => ({
-                    source: activities.find((a) => a.name === depName)!,
-                    target: activity,
-                })),
+                activity.dependencies.map((depName) => {
+                    const source = activities.find((a) => a.name === depName);
+                    if (!source) return null;
+                    const target = activity;
+                    const sourceResult = cpmResults.find((r) => r.name === source.name);
+                    const targetResult = cpmResults.find((r) => r.name === target.name);
+                    return {
+                        source,
+                        target,
+                        isCritical: sourceResult?.isOnCriticalPath && targetResult?.isOnCriticalPath,
+                    } as Link;
+                }),
             )
-            .filter((link) => link.source && link.target);
+            .filter((link): link is Link => link !== null && link.source !== undefined && link.target !== undefined);
 
         // Setup zoom behavior
         const zoom = d3
@@ -42,10 +61,12 @@ export function NetworkView() {
 
         const g = svg.append('g');
 
-        // Define arrow marker
-        svg.append('defs')
-            .append('marker')
-            .attr('id', 'arrowhead')
+        // Define arrow markers for both normal and critical paths
+        const defs = svg.append('defs');
+
+        // Normal path arrow
+        defs.append('marker')
+            .attr('id', 'arrowhead-normal')
             .attr('viewBox', '-0 -5 10 10')
             .attr('refX', 34)
             .attr('refY', 0)
@@ -56,27 +77,49 @@ export function NetworkView() {
             .attr('d', 'M 0,-5 L 10,0 L 0,5')
             .attr('fill', theme === 'dark' ? 'rgb(153, 153, 153)' : 'black');
 
+        // Critical path arrow
+        defs.append('marker')
+            .attr('id', 'arrowhead-critical')
+            .attr('viewBox', '-0 -5 10 10')
+            .attr('refX', 34)
+            .attr('refY', 0)
+            .attr('orient', 'auto')
+            .attr('markerWidth', 8)
+            .attr('markerHeight', 8)
+            .append('path')
+            .attr('d', 'M 0,-5 L 10,0 L 0,5')
+            .attr('fill', 'hsl(var(--chart-1))');
+
         // Create links
         const link = g
             .append('g')
-            .selectAll('line')
+            .selectAll<SVGLineElement, Link>('line')
             .data(links)
             .join('line')
-            .attr('stroke', theme === 'dark' ? 'rgb(153, 153, 153)' : 'black')
-            .attr('stroke-width', 2)
-            .attr('marker-end', 'url(#arrowhead)');
+            .attr('stroke', (d: Link) =>
+                d.isCritical ? 'hsl(var(--chart-1))' : theme === 'dark' ? 'rgb(153, 153, 153)' : 'black',
+            )
+            .attr('stroke-width', () => 2)
+            .attr('marker-end', (d: Link) => (d.isCritical ? 'url(#arrowhead-critical)' : 'url(#arrowhead-normal)'));
 
         // Create node groups
         const nodeGroup = g
             .append('g')
-            .selectAll('g')
+            .selectAll<SVGGElement, Node>('g')
             .data(activities)
             .join('g')
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            .call(d3.drag<any, any>().on('start', dragStarted).on('drag', dragging).on('end', dragEnded));
+            .call((g) =>
+                g.call(d3.drag<SVGGElement, Node>().on('start', dragStarted).on('drag', dragging).on('end', dragEnded)),
+            );
 
         // Add circles for nodes
-        nodeGroup.append('circle').attr('r', nodeRadius).attr('fill', 'rgb(105, 179, 162)');
+        nodeGroup
+            .append('circle')
+            .attr('r', nodeRadius)
+            .attr('fill', (d: Node) => {
+                const result = cpmResults.find((r) => r.name === d.name);
+                return result?.isOnCriticalPath ? 'hsl(var(--chart-1))' : 'rgb(105, 179, 162)';
+            });
 
         // Add activity name
         nodeGroup
@@ -85,7 +128,7 @@ export function NetworkView() {
             .attr('dy', '0.3em')
             .attr('fill', theme === 'dark' ? 'white' : 'black')
             .attr('font-size', '14')
-            .text((d) => d.name || `A${d.id}`);
+            .text((d: Node) => d.name || `A${d.id}`);
 
         // Setup force simulation
         const simulation = d3
@@ -127,14 +170,38 @@ export function NetworkView() {
         return () => {
             simulation.stop();
         };
-    }, [activities, theme]);
+    }, [activities, theme, cpmResults]);
 
     return (
-        <div className="border rounded-lg bg-muted h-full">
-            <div className="w-full h-full overflow-hidden">
-                <h2 className="text-lg font-semibold p-2">Network View</h2>
-                <svg ref={svgRef} className="w-full h-[calc(100%-40px)]" />
-            </div>
+        <div className={isExpanded ? 'fixed inset-0 p-6 z-50 bg-background' : 'w-full h-full'}>
+            <Card className="w-full h-full">
+                <CardHeader className="pb-2">
+                    <div className="flex justify-between items-center">
+                        <CardTitle>Network View</CardTitle>
+                        <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded-sm bg-[hsl(var(--chart-1))]" />
+                                <span className="text-sm text-muted-foreground">Critical Path</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded-sm bg-[rgb(105,179,162)]" />
+                                <span className="text-sm text-muted-foreground">Normal Activity</span>
+                            </div>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => setIsExpanded(!isExpanded)}
+                                className="ml-2"
+                            >
+                                {isExpanded ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+                            </Button>
+                        </div>
+                    </div>
+                </CardHeader>
+                <CardContent className="h-[calc(100%-40px)] w-full pt-0">
+                    <svg ref={svgRef} className="w-full h-full" />
+                </CardContent>
+            </Card>
         </div>
     );
 }

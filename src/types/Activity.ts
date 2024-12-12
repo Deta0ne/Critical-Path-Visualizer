@@ -27,6 +27,7 @@ export interface Node extends d3.SimulationNodeDatum {
 export interface Link extends d3.SimulationLinkDatum<Node> {
     source: Node;
     target: Node;
+    isCritical?: boolean;
 }
 
 export interface ActivityStore {
