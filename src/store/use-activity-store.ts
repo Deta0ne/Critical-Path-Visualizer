@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { Activity, ActivityStore,CPMActivity, NormalizedExcelRow } from '@/types/Activity';
 import * as XLSX from 'xlsx';
 import { toast } from '@/hooks/use-toast';
+import { sortActivitiesByDependencies } from '@/lib/activity-utils';
 
 export const activitySchema = z.object({
     id: z.number(),
@@ -75,7 +76,8 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
         const startDate = get().startDate;
         if (!startDate) return [];
         const activities = get().activities as Activity[];
-        const cpmActivities: CPMActivity[] = activities.map(activity => ({
+        const sortedActivities = sortActivitiesByDependencies(activities);
+        const cpmActivities: CPMActivity[] = sortedActivities.map(activity => ({
             ...activity,
             ES: 0,
             EF: 0,
@@ -202,7 +204,7 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
                 ? Math.max(...currentActivities.map(a => a.id)) + 1 
                 : 1;
 
-            const newActivities = [...currentActivities];
+            const tempActivities = [...currentActivities];
 
             jsonData.forEach((row: unknown) => {
                 const result = excelActivitySchema.safeParse(row);
@@ -219,10 +221,10 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
                             optimistic: validatedData.optimistic,
                             mostLikely: validatedData.mostLikely,
                             pessimistic: validatedData.pessimistic,
-                            dependencies: validatedData.dependencies ? validatedData.dependencies.split(',').map(d => d.trim()) : [],
+                            dependencies: validatedData.dependencies ? validatedData.dependencies.split(',').map((d: string) => d.trim()) : [],
                         };
                         
-                        newActivities.push(newActivity);
+                        tempActivities.push(newActivity);
                     }
                 } else {
                     console.error('Invalid row data:', result.error);
@@ -234,12 +236,29 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
                 }
             });
 
-            set({ activities: newActivities });
+            const validActivities = tempActivities.filter((activity: Activity) => activitySchema.safeParse(activity).success);
+
+            const processedActivities = validActivities.map((data: Activity, index: number) => ({
+                id: index + 1,
+                name: data.name,
+                optimistic: data.optimistic,
+                mostLikely: data.mostLikely,
+                pessimistic: data.pessimistic,
+                dependencies: data.dependencies,
+            }));
+
+            const sortedActivities = sortActivitiesByDependencies(processedActivities);
+            set({ activities: sortedActivities });
 
             toast({
                 title: 'Data imported successfully',
             });
         };
         reader.readAsArrayBuffer(file);
+    },
+
+    setActivities: (activities: Activity[]) => {
+        const sortedActivities = sortActivitiesByDependencies(activities);
+        set({ activities: sortedActivities });
     },
 })); 

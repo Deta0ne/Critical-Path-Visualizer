@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useToast } from '@/hooks/use-toast';
 import { Activity } from '@/types/Activity';
 import { DatePicker } from '@/components/ui/date-picker';
+import { useSaveActivitiesStore } from '@/store/save-activities-store';
 
 export function DataTable() {
     const { activities, updateActivity, addActivity, deleteActivity, startDate, setStartDate, handleFileUpload } =
@@ -16,6 +17,8 @@ export function DataTable() {
     const { toast } = useToast();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 7;
+    const [saveName, setSaveName] = useState('');
+    const { saveCurrentActivities } = useSaveActivitiesStore();
 
     const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -204,7 +207,7 @@ export function DataTable() {
                                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                                 disabled={currentPage === 1}
                             >
-                                {t('table.previous')}
+                                {t('common.previous')}
                             </Button>
 
                             {renderPageButtons()}
@@ -215,12 +218,29 @@ export function DataTable() {
                                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                                 disabled={currentPage === totalPages}
                             >
-                                {t('table.next')}
+                                {t('common.next')}
                             </Button>
                         </div>
                     </div>
                 </div>
             )}
+            <div className="flex items-center gap-2 mt-4">
+                <Input
+                    placeholder={t('projectNotifications.saveName')}
+                    value={saveName}
+                    onChange={(e) => setSaveName(e.target.value)}
+                />
+                <Button
+                    onClick={() => {
+                        if (saveName.trim()) {
+                            saveCurrentActivities(saveName, activities);
+                            setSaveName('');
+                        }
+                    }}
+                >
+                    {t('projectNotifications.saveButton')}
+                </Button>
+            </div>
         </div>
     );
 }

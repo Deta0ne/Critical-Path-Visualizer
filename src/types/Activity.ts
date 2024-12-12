@@ -27,6 +27,7 @@ export interface Node extends d3.SimulationNodeDatum {
 export interface Link extends d3.SimulationLinkDatum<Node> {
     source: Node;
     target: Node;
+    isCritical?: boolean;
 }
 
 export interface ActivityStore {
@@ -39,6 +40,7 @@ export interface ActivityStore {
     validateActivity: (activity: Activity) => z.SafeParseReturnType<Activity, Activity>;
     calculateCPM: () => CPMActivity[];
     handleFileUpload: (file: File) => void;
+    setActivities: (activities: Activity[]) => void;
 }
 export interface CPMActivity {
     ES: number; 
@@ -63,4 +65,34 @@ export interface NormalizedExcelRow {
     mostLikely?: number;
     pessimistic?: number;
     dependencies?: string;
+}
+
+export interface SavedActivity {
+    id: string;
+    name: string;
+    activities: Activity[];
+    startDate: Date;
+}
+
+export interface SaveActivitiesStore {
+  savedActivities: SavedActivity[];
+  saveCurrentActivities: (name: string, activities: Activity[]) => void;
+  loadSavedActivities: (id: string) => void;
+  deleteSavedActivities: (id: string) => void;
+}
+
+export interface PertCalculation {
+  criticalPath: CPMActivity[];
+  projectDuration: number;
+  totalVariance: number;
+  standardDeviation: number;
+  probabilityDurations: {
+    probability: number;
+    duration: string;
+  }[];
+}
+
+export interface PertStore {
+  calculations: PertCalculation | null;
+  calculatePertMetrics: (activities: Activity[], cpmResults: CPMActivity[]) => void;
 }

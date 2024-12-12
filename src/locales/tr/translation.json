@@ -4,6 +4,7 @@
         "addActivity": "Aktivite Ekle",
         "edit": "Düzenle",
         "delete": "Sil",
+        "load": "Yükle",
         "save": "Kaydet",
         "cancel": "İptal",
         "close": "Kapat",
@@ -13,10 +14,15 @@
         "required": "gereklidir",
         "selectStartDate": "Başlangıç Tarihi Seçin",
         "importExcel": "Excel'den İçe Aktar",
-        "dataImported": "Veri başarıyla içe aktarıldı"
-
+        "dataImported": "Veri başarıyla içe aktarıldı",
+        "startDate": "Başlangıç Tarihi",
+        "estimatedEndDate": "Tahmini Bitiş Tarihi",
+        "next": "Sonraki",
+        "previous": "Önceki",
+        "addToCalendar": "Takvime Ekle"
     },
     "activity": {
+        "activitie": "aktivite",
         "title": "Aktiviteler",
         "name": "Aktivite Adı",
         "duration": "Süre",
@@ -32,10 +38,15 @@
         "expectedDuration": "Beklenen Süre"
       
     },
-    "table": {
-        "startDate": "Başlangıç Tarihi",
-        "next": "Sonraki",
-        "previous": "Önceki"
+    "projectNotifications": {
+        "saveSuccess": "Başarılı",
+        "saveDescription": "isimli aktivite seti kaydedildi.",
+        "saveName": "Aktivite seti adı",
+        "saveButton": "Aktiviteleri Kaydet",
+        "deleteSuccess": "Proje silindi",
+        "deleteDescription": "Proje başarıyla silindi.",
+        "loadSuccess": "Proje yüklendi",
+        "loadDescription": "Proje başarıyla yüklendi. Dashboard sayfasına yönlendiriliyorsunuz."
     },
     "analysis": {
         "projectStatistics": "Proje İstatistikleri",
@@ -50,7 +61,10 @@
         "networkDiagram": "Ağ Diyagramı",
         "ganttChart": "Gantt Çizelgesi",
         "completionProbability": "Tamamlama Olasılığı",
-        "days": "gün"
+        "days": "gün",
+        "noProjects": "Proje bulunamadı",
+        "setStartDate": "Lütfen başlangıç tarihini belirleyin",
+        "addActivities": "Aktiviteleri görüntüleyin PERT hesaplamaları"
     },
     "errors": {
         "invalidInput": "Geçersiz giriş",
@@ -77,7 +91,9 @@
         },
         "projects": {
             "title": "Projeler",
-            "description": "Projelerinizi yönetin"
+            "description": "Projelerinizi yönetin",
+            "noProjects": "Henüz kaydedilmiş proje bulunmuyor",
+            "noProjectsDescription": "Dashboard sayfasından aktivitelerinizi oluşturup kaydedebilirsiniz"
         },
         "calendar": {
             "title": "Takvim",

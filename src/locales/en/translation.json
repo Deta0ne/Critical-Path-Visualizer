@@ -4,17 +4,22 @@
         "addActivity": "Add Activity",
         "edit": "Edit",
         "delete": "Delete",
+        "load": "Load",
         "actions": "Actions",
         "deletedActivity": "Activity deleted",
         "saveSuccess": "Successfully saved",
         "required": "is required",
         "selectStartDate": "Select Start Date",
         "importExcel": "Import Excel",
-        "dataImported": "Data imported successfully"
-
-        
+        "dataImported": "Data imported successfully",
+        "startDate": "Start Date",
+        "next": "Next",
+        "previous": "Previous",
+        "addToCalendar": "Add to Calendar",
+        "estimatedEndDate": "Estimated End Date"
     },
     "activity": {
+        "activitie": "activity",
         "title": "Activities",
         "name": "Activity Name",
         "duration": "Duration",
@@ -43,13 +48,21 @@
         "variance": "Variance",
         "networkDiagram": "Network Diagram",
         "ganttChart": "Gantt Chart",
-        "days": "days"
+        "days": "days",
+        "noProjects": "No projects found",
+        "setStartDate": "Please set a start date",
+        "addActivities": "Add activities to see PERT calculations"
     },
-    "table": {
-        "startDate": "Start Date",
-        "next": "Next",
-        "previous": "Previous"
-        },
+    "projectNotifications": {
+        "saveSuccess": "Successful",
+        "saveDescription": "named activity set was recorded.",
+        "saveName": "Activity set name",
+        "saveButton": "Save Activities",
+        "deleteSuccess": "Project deleted",
+        "deleteDescription": "Project was deleted successfully.",
+        "loadSuccess": "Project loaded",
+        "loadDescription": "Project was loaded successfully. You are being redirected to the Dashboard page."
+    },
     "errors": {
         "invalidInput": "Invalid input",
         "duplicateActivity": "Activity already exists",
@@ -75,7 +88,9 @@
         },
         "projects": {
             "title": "Projects",
-            "description": "Manage your projects"
+            "description": "Manage your projects",
+            "noProjects": "No projects found",
+            "noProjectsDescription": "Create and save activities from the Dashboard page"
         },
         "calendar": {
             "title": "Calendar",
