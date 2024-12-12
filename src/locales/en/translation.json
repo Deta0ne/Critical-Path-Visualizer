@@ -14,7 +14,9 @@
         "dataImported": "Data imported successfully",
         "startDate": "Start Date",
         "next": "Next",
-        "previous": "Previous"
+        "previous": "Previous",
+        "addToCalendar": "Add to Calendar",
+        "estimatedEndDate": "Estimated End Date"
     },
     "activity": {
         "activitie": "activity",

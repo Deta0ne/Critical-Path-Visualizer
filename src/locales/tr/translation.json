@@ -18,7 +18,8 @@
         "startDate": "Başlangıç Tarihi",
         "estimatedEndDate": "Tahmini Bitiş Tarihi",
         "next": "Sonraki",
-        "previous": "Önceki"
+        "previous": "Önceki",
+        "addToCalendar": "Takvime Ekle"
     },
     "activity": {
         "activitie": "aktivite",

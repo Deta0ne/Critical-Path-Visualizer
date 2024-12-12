@@ -235,10 +235,6 @@ export function DataTable() {
                         if (saveName.trim()) {
                             saveCurrentActivities(saveName, activities);
                             setSaveName('');
-                            toast({
-                                title: t('projectNotifications.saveSuccess'),
-                                description: `"${saveName}" ${t('projectNotifications.saveDescription')}`,
-                            });
                         }
                     }}
                 >
