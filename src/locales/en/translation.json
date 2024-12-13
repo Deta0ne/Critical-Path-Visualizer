@@ -80,7 +80,64 @@
     "pages": {
         "home": {
             "title": "Home",
-            "description": "Welcome to Critical Path Visualizer"
+            "description": "Welcome to Critical Path Visualizer",
+            "heroTitle": "Project Management and CPM/PERT Analysis",
+            "heroDescription": "Plan, analyze, and manage your projects with professional tools. Project management is now easier with modern interface and advanced features.",
+            "getStarted": "Get Started",
+            "myProjects": "My Projects",
+            "features": {
+                "title": "Features",
+                "pertAnalysis": {
+                    "title": "PERT Analysis",
+                    "description": "Analyze project durations with optimistic, most likely, and pessimistic estimates"
+                },
+                "networkDiagram": {
+                    "title": "Network Diagram",
+                    "description": "View project activities in a visual network diagram"
+                },
+                "criticalPath": {
+                    "title": "Critical Path",
+                    "description": "Automatically calculate your project's critical path"
+                },
+                "ganttChart": {
+                    "title": "Gantt Chart",
+                    "description": "Plan project timeline with Gantt chart"
+                },
+                "projectSaving": {
+                    "title": "Project Saving",
+                    "description": "Save your projects for later use"
+                },
+                "statistics": {
+                    "title": "Statistics",
+                    "description": "Detailed project statistics and probability calculations"
+                }
+            },
+            "howItWorks": {
+                "title": "How It Works",
+                "steps": {
+                    "step1": {
+                        "title": "Enter Activities",
+                        "description": "Add your project activities and dependencies to the system"
+                    },
+                    "step2": {
+                        "title": "Perform PERT Analysis",
+                        "description": "Estimate activity durations and perform PERT analysis"
+                    },
+                    "step3": {
+                        "title": "View Critical Path",
+                        "description": "Examine automatically calculated critical path and network diagram"
+                    },
+                    "step4": {
+                        "title": "Get Reports",
+                        "description": "View detailed project reports and Gantt chart"
+                    }
+                }
+            },
+            "cta": {
+                "title": "Ready to Manage Your Project?",
+                "description": "Start planning your project with modern tools and perform critical path analysis right away.",
+                "button": "Go to Dashboard"
+            }
         },
         "dashboard": {
             "title": "Dashboard",
@@ -100,7 +157,53 @@
             "title": "Help",
             "description": "Get help and support",
             "faq": "Frequently Asked Questions",
-            "contact": "Contact Support"
+            "searchPlaceholder": "Search help topics...",
+            "categories": {
+                "gettingStarted": {
+                    "title": "Getting Started",
+                    "description": "Learn how to manage your project with CPM/PERT analysis"
+                },
+                "activities": {
+                    "title": "Activities",
+                    "description": "Learn how to add and manage activities"
+                },
+                "analysis": {
+                    "title": "Analysis",
+                    "description": "Get information about PERT analysis and critical path calculations"
+                },
+                "reports": {
+                    "title": "Reports",
+                    "description": "Project reports and Gantt chart usage"
+                }
+            },
+            "faqItems": {
+                "whatIsCPM": {
+                    "question": "What is Critical Path Method (CPM)?",
+                    "answer": "Critical Path Method is a project management technique that identifies the longest chain of activities and calculates the minimum completion time of the project."
+                },
+                "whatIsPERT": {
+                    "question": "What is PERT Analysis used for?",
+                    "answer": "PERT (Program Evaluation and Review Technique) analyzes project durations with optimistic, most likely, and pessimistic estimates, calculating the probability distribution of project completion time."
+                },
+                "howToStart": {
+                    "question": "How can I get started?",
+                    "answer": "You can start a new project from the Dashboard page, add your activities, and define dependencies. Then the system will automatically calculate the critical path."
+                },
+                "canIExport": {
+                    "question": "Can I export my project data?",
+                    "answer": "Yes, you can export your projects in Excel format and save your reports as PDF."
+                }
+            },
+            "contact": {
+                "title": "Contact Us",
+                "description": "Reach out to us with your questions or suggestions",
+                "email": "Email",
+                "message": "Message",
+                "send": "Send",
+                "or": "or",
+                "documentation": "View Documentation",
+                "community": "Community Forum"
+            }
         },
         "settings": {
             "title": "Settings",
