@@ -160,11 +160,11 @@ export const useActivityStore = create<ActivityStore>((set, get) => ({
                 key.toLowerCase().replace(/[\s_-]/g, '');
 
             const fieldMappings = {
-                name: ['name', 'activityname', 'activity', 'taskname', 'task'],
-                optimistic: ['optimistic', 'optimistictime', 'opttime', 'mintime'],
-                mostLikely: ['mostlikely', 'likely', 'normaltime', 'expectedtime'],
-                pessimistic: ['pessimistic', 'pessimistictime', 'maxtime'],
-                dependencies: ['dependencies', 'dependson', 'prerequisite', 'depends']
+                name: ['name', 'activityname', 'activity', 'taskname', 'task', 'Activity Name'],
+                optimistic: ['optimistic', 'optimistictime', 'opttime', 'mintime', 'Optimistic Time','Optimistic Duration'],
+                mostLikely: ['mostlikely', 'likely', 'normaltime', 'expectedtime', 'Most Likely Time','Most Likely Duration'],
+                pessimistic: ['pessimistic', 'pessimistictime', 'maxtime', 'Pessimistic Time','Pessimistic Duration'],
+                dependencies: ['dependencies', 'dependson', 'prerequisite', 'depends','Dependencies','Prerequisites']
             };
 
             const jsonData = (rawJsonData as unknown[]).map((row) => {
