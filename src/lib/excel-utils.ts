@@ -17,6 +17,7 @@ interface ExportData {
 }
 
 export function exportToExcel(data: ExportData, fileName: string = 'project-data.xlsx') {
+    console.log(data);
     const activityData = data.activities.map(activity => ({
         'Activity Name': activity.name,
         'Optimistic Duration': activity.optimistic,

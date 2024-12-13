@@ -70,21 +70,21 @@ export function DataTable() {
             return;
         }
 
-        // Dil seçimine göre uygun fonksiyonu kullan
-        const exportFn = exportToExcel;
+        const cpmResults = useActivityStore.getState().calculateCPM();
+        const criticalPathActivities = cpmResults.filter((activity) => activity.isOnCriticalPath);
 
-        exportFn({
-            activities: activities.map((activity) => ({
+        exportToExcel({
+            activities: cpmResults.map((activity) => ({
                 ...activity,
-                duration: (activity.optimistic + 4 * activity.mostLikely + activity.pessimistic) / 6,
-                earliestStart: 0,
-                earliestFinish: 0,
-                latestStart: 0,
-                latestFinish: 0,
-                slack: 0,
+                duration: Math.round((activity.optimistic + 4 * activity.mostLikely + activity.pessimistic) / 6),
+                earliestStart: activity.ES,
+                earliestFinish: activity.EF,
+                latestStart: activity.LS,
+                latestFinish: activity.LF,
+                slack: activity.slack,
             })),
-            criticalPath: [],
-            projectDuration: 0,
+            criticalPath: criticalPathActivities.map((activity) => activity.name),
+            projectDuration: Math.max(...cpmResults.map((a) => a.EF)),
         });
 
         toast({
