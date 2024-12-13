@@ -83,7 +83,64 @@
     "pages": {
         "home": {
             "title": "Ana Sayfa",
-            "description": "Kritik Yol Görselleştiriciye Hoş Geldiniz"
+            "description": "Kritik Yol Görselleştiriciye Hoş Geldiniz",
+            "heroTitle": "Proje Yönetimi ve CPM/PERT Analizi",
+            "heroDescription": "Projelerinizi profesyonel araçlarla planlayın, analiz edin ve yönetin. Modern arayüz ve gelişmiş özelliklerle proje yönetimi artık daha kolay.",
+            "getStarted": "Hemen Başla",
+            "myProjects": "Projelerim",
+            "features": {
+                "title": "Özellikler",
+                "pertAnalysis": {
+                    "title": "PERT Analizi",
+                    "description": "Proje sürelerini optimistik, en olası ve pesimistik tahminlerle analiz edin"
+                },
+                "networkDiagram": {
+                    "title": "Ağ Diyagramı",
+                    "description": "Proje aktivitelerini görsel bir ağ diyagramında görüntüleyin"
+                },
+                "criticalPath": {
+                    "title": "Kritik Yol",
+                    "description": "Projenizin kritik yolunu otomatik olarak hesaplayın"
+                },
+                "ganttChart": {
+                    "title": "Gantt Şeması",
+                    "description": "Proje zaman çizelgesini Gantt şeması ile planlayın"
+                },
+                "projectSaving": {
+                    "title": "Proje Kaydetme",
+                    "description": "Projelerinizi kaydedip daha sonra kullanmak üzere saklayın"
+                },
+                "statistics": {
+                    "title": "İstatistikler",
+                    "description": "Detaylı proje istatistikleri ve olasılık hesaplamaları"
+                }
+            },
+            "howItWorks": {
+                "title": "Nasıl Çalışır?",
+                "steps": {
+                    "step1": {
+                        "title": "Aktiviteleri Girin",
+                        "description": "Projenizin aktivitelerini ve bağımlılıklarını sisteme ekleyin"
+                    },
+                    "step2": {
+                        "title": "PERT Analizi Yapın",
+                        "description": "Aktivite sürelerini tahmin edin ve PERT analizini gerçekleştirin"
+                    },
+                    "step3": {
+                        "title": "Kritik Yolu Görün",
+                        "description": "Otomatik hesaplanan kritik yol ve ağ diyagramını inceleyin"
+                    },
+                    "step4": {
+                        "title": "Raporları Alın",
+                        "description": "Detaylı proje raporları ve Gantt şemasını görüntüleyin"
+                    }
+                }
+            },
+            "cta": {
+                "title": "Projenizi Yönetmeye Hazır mısınız?",
+                "description": "Modern araçlarla projenizi planlamaya başlayın ve kritik yol analizini hemen gerçekleştirin.",
+                "button": "Dashboard'a Git"
+            }
         },
         "dashboard": {
             "title": "Gösterge Paneli",

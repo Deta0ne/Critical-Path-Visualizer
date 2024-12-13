@@ -80,7 +80,64 @@
     "pages": {
         "home": {
             "title": "Home",
-            "description": "Welcome to Critical Path Visualizer"
+            "description": "Welcome to Critical Path Visualizer",
+            "heroTitle": "Project Management and CPM/PERT Analysis",
+            "heroDescription": "Plan, analyze, and manage your projects with professional tools. Project management is now easier with modern interface and advanced features.",
+            "getStarted": "Get Started",
+            "myProjects": "My Projects",
+            "features": {
+                "title": "Features",
+                "pertAnalysis": {
+                    "title": "PERT Analysis",
+                    "description": "Analyze project durations with optimistic, most likely, and pessimistic estimates"
+                },
+                "networkDiagram": {
+                    "title": "Network Diagram",
+                    "description": "View project activities in a visual network diagram"
+                },
+                "criticalPath": {
+                    "title": "Critical Path",
+                    "description": "Automatically calculate your project's critical path"
+                },
+                "ganttChart": {
+                    "title": "Gantt Chart",
+                    "description": "Plan project timeline with Gantt chart"
+                },
+                "projectSaving": {
+                    "title": "Project Saving",
+                    "description": "Save your projects for later use"
+                },
+                "statistics": {
+                    "title": "Statistics",
+                    "description": "Detailed project statistics and probability calculations"
+                }
+            },
+            "howItWorks": {
+                "title": "How It Works",
+                "steps": {
+                    "step1": {
+                        "title": "Enter Activities",
+                        "description": "Add your project activities and dependencies to the system"
+                    },
+                    "step2": {
+                        "title": "Perform PERT Analysis",
+                        "description": "Estimate activity durations and perform PERT analysis"
+                    },
+                    "step3": {
+                        "title": "View Critical Path",
+                        "description": "Examine automatically calculated critical path and network diagram"
+                    },
+                    "step4": {
+                        "title": "Get Reports",
+                        "description": "View detailed project reports and Gantt chart"
+                    }
+                }
+            },
+            "cta": {
+                "title": "Ready to Manage Your Project?",
+                "description": "Start planning your project with modern tools and perform critical path analysis right away.",
+                "button": "Go to Dashboard"
+            }
         },
         "dashboard": {
             "title": "Dashboard",
