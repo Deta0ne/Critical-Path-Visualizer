@@ -24,7 +24,3 @@ export function calculateZScore(probability: number): number {
 
     return standardNormalICDF(p);
 }
-
-const probability = 80; // Yüzde olarak olasılık
-const zScore = calculateZScore(probability);
-console.log(`Z-Score for ${probability}% probability:`, zScore);

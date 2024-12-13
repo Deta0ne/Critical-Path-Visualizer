@@ -19,7 +19,8 @@
         "estimatedEndDate": "Tahmini Bitiş Tarihi",
         "next": "Sonraki",
         "previous": "Önceki",
-        "addToCalendar": "Takvime Ekle"
+        "addToCalendar": "Takvime Ekle",
+        "exportExcel": "Excel'e Aktar"
     },
     "activity": {
         "activitie": "aktivite",

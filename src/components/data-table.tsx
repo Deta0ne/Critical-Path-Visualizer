@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Plus, Trash2, Upload } from 'lucide-react';
+import { Plus, Trash2, Upload, Download } from 'lucide-react';
 import { useActivityStore } from '@/store/use-activity-store';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '@/hooks/use-toast';
 import { Activity } from '@/types/Activity';
 import { DatePicker } from '@/components/ui/date-picker';
 import { useSaveActivitiesStore } from '@/store/save-activities-store';
+import { exportToExcel } from '@/lib/excel-utils';
 
 export function DataTable() {
     const { activities, updateActivity, addActivity, deleteActivity, startDate, setStartDate, handleFileUpload } =
@@ -59,6 +60,39 @@ export function DataTable() {
         return buttons;
     };
 
+    const handleExport = () => {
+        if (!activities.length) {
+            toast({
+                title: t('common.error'),
+                description: t('analysis.noProjects'),
+                variant: 'destructive',
+            });
+            return;
+        }
+
+        // Dil seçimine göre uygun fonksiyonu kullan
+        const exportFn = exportToExcel;
+
+        exportFn({
+            activities: activities.map((activity) => ({
+                ...activity,
+                duration: (activity.optimistic + 4 * activity.mostLikely + activity.pessimistic) / 6,
+                earliestStart: 0,
+                earliestFinish: 0,
+                latestStart: 0,
+                latestFinish: 0,
+                slack: 0,
+            })),
+            criticalPath: [],
+            projectDuration: 0,
+        });
+
+        toast({
+            title: t('common.success'),
+            description: t('common.exportSuccess'),
+        });
+    };
+
     return (
         <div className="h-full flex flex-col">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
@@ -101,6 +135,10 @@ export function DataTable() {
                         >
                             <Upload className="mr-2 h-4 w-4" />
                             {t('common.importExcel')}
+                        </Button>
+                        <Button onClick={handleExport} size="sm" variant="outline" className="w-full sm:w-auto">
+                            <Download className="mr-2 h-4 w-4" />
+                            {t('common.exportExcel')}
                         </Button>
                     </div>
                 </div>

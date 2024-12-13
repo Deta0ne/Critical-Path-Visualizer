@@ -16,7 +16,8 @@
         "next": "Next",
         "previous": "Previous",
         "addToCalendar": "Add to Calendar",
-        "estimatedEndDate": "Estimated End Date"
+        "estimatedEndDate": "Estimated End Date",
+        "exportExcel": "Export Excel"
     },
     "activity": {
         "activitie": "activity",
