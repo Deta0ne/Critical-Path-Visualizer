@@ -157,7 +157,53 @@
             "title": "Help",
             "description": "Get help and support",
             "faq": "Frequently Asked Questions",
-            "contact": "Contact Support"
+            "searchPlaceholder": "Search help topics...",
+            "categories": {
+                "gettingStarted": {
+                    "title": "Getting Started",
+                    "description": "Learn how to manage your project with CPM/PERT analysis"
+                },
+                "activities": {
+                    "title": "Activities",
+                    "description": "Learn how to add and manage activities"
+                },
+                "analysis": {
+                    "title": "Analysis",
+                    "description": "Get information about PERT analysis and critical path calculations"
+                },
+                "reports": {
+                    "title": "Reports",
+                    "description": "Project reports and Gantt chart usage"
+                }
+            },
+            "faqItems": {
+                "whatIsCPM": {
+                    "question": "What is Critical Path Method (CPM)?",
+                    "answer": "Critical Path Method is a project management technique that identifies the longest chain of activities and calculates the minimum completion time of the project."
+                },
+                "whatIsPERT": {
+                    "question": "What is PERT Analysis used for?",
+                    "answer": "PERT (Program Evaluation and Review Technique) analyzes project durations with optimistic, most likely, and pessimistic estimates, calculating the probability distribution of project completion time."
+                },
+                "howToStart": {
+                    "question": "How can I get started?",
+                    "answer": "You can start a new project from the Dashboard page, add your activities, and define dependencies. Then the system will automatically calculate the critical path."
+                },
+                "canIExport": {
+                    "question": "Can I export my project data?",
+                    "answer": "Yes, you can export your projects in Excel format and save your reports as PDF."
+                }
+            },
+            "contact": {
+                "title": "Contact Us",
+                "description": "Reach out to us with your questions or suggestions",
+                "email": "Email",
+                "message": "Message",
+                "send": "Send",
+                "or": "or",
+                "documentation": "View Documentation",
+                "community": "Community Forum"
+            }
         },
         "settings": {
             "title": "Settings",
