@@ -1,0 +1,216 @@
+{
+    "common": {
+        "title": "Critical Path Visualizer",
+        "addActivity": "Add Activity",
+        "edit": "Edit",
+        "delete": "Delete",
+        "load": "Load",
+        "actions": "Actions",
+        "deletedActivity": "Activity deleted",
+        "saveSuccess": "Successfully saved",
+        "required": "is required",
+        "selectStartDate": "Select Start Date",
+        "importExcel": "Import Excel",
+        "dataImported": "Data imported successfully",
+        "startDate": "Start Date",
+        "next": "Next",
+        "previous": "Previous",
+        "addToCalendar": "Add to Calendar",
+        "estimatedEndDate": "Estimated End Date",
+        "exportExcel": "Export Excel"
+    },
+    "activity": {
+        "activitie": "activity",
+        "title": "Activities",
+        "name": "Activity Name",
+        "duration": "Duration",
+        "optimistic": "Optimistic",
+        "mostLikely": "Most Likely",
+        "pessimistic": "Pessimistic",
+        "earliestStart": "Earliest Start",
+        "earliestFinish": "Earliest Finish",
+        "latestStart": "Latest Start",
+        "latestFinish": "Latest Finish",
+        "slack": "Slack",
+        "dependencies": "Dependencies",
+        "expectedDuration": "Expected Duration"
+       
+    },
+    "analysis": {
+        "projectStatistics": "Project Statistics",
+        "criticalPath": "Critical Path",
+        "projectDuration": "Project Duration",
+        "standardDeviation": "Standard Deviation",
+        "totalVariance": "Total Variance",
+        "confidenceInterval": "Confidence Interval",
+        "durationRange": "Duration Range",
+        "expectedDuration": "Expected Duration",
+        "completionProbability": "Completion Probability",
+        "variance": "Variance",
+        "networkDiagram": "Network Diagram",
+        "ganttChart": "Gantt Chart",
+        "days": "days",
+        "noProjects": "No projects found",
+        "setStartDate": "Please set a start date",
+        "addActivities": "Add activities to see PERT calculations"
+    },
+    "projectNotifications": {
+        "saveSuccess": "Successful",
+        "saveDescription": "named activity set was recorded.",
+        "saveName": "Activity set name",
+        "saveButton": "Save Activities",
+        "deleteSuccess": "Project deleted",
+        "deleteDescription": "Project was deleted successfully.",
+        "loadSuccess": "Project loaded",
+        "loadDescription": "Project was loaded successfully. You are being redirected to the Dashboard page."
+    },
+    "errors": {
+        "invalidInput": "Invalid input",
+        "duplicateActivity": "Activity already exists",
+        "missingFields": "Please fill all required fields",
+        "invalidDuration": "Duration must be positive",
+        "durationOrder": "Optimistic time should be less than most likely time, and most likely time should be less than pessimistic time",
+        "required": "is required",
+        "optimisticTooHigh": "Optimistic time cannot be greater than most likely time",
+        "mostLikelyRange": "Most likely time must be between optimistic and pessimistic times",
+        "pessimisticTooLow": "Pessimistic time cannot be less than most likely time",
+        "invalidDependencies": "Invalid dependencies: {{deps}}",
+        "cannotDelete": "Cannot delete activity",
+        "activityHasDependents": "This activity is depended on by: {{activities}}"
+    },
+    "pages": {
+        "home": {
+            "title": "Home",
+            "description": "Welcome to Critical Path Visualizer",
+            "heroTitle": "Project Management and CPM/PERT Analysis",
+            "heroDescription": "Plan, analyze, and manage your projects with professional tools. Project management is now easier with modern interface and advanced features.",
+            "getStarted": "Get Started",
+            "myProjects": "My Projects",
+            "features": {
+                "title": "Features",
+                "pertAnalysis": {
+                    "title": "PERT Analysis",
+                    "description": "Analyze project durations with optimistic, most likely, and pessimistic estimates"
+                },
+                "networkDiagram": {
+                    "title": "Network Diagram",
+                    "description": "View project activities in a visual network diagram"
+                },
+                "criticalPath": {
+                    "title": "Critical Path",
+                    "description": "Automatically calculate your project's critical path"
+                },
+                "ganttChart": {
+                    "title": "Gantt Chart",
+                    "description": "Plan project timeline with Gantt chart"
+                },
+                "projectSaving": {
+                    "title": "Project Saving",
+                    "description": "Save your projects for later use"
+                },
+                "statistics": {
+                    "title": "Statistics",
+                    "description": "Detailed project statistics and probability calculations"
+                }
+            },
+            "howItWorks": {
+                "title": "How It Works",
+                "steps": {
+                    "step1": {
+                        "title": "Enter Activities",
+                        "description": "Add your project activities and dependencies to the system"
+                    },
+                    "step2": {
+                        "title": "Perform PERT Analysis",
+                        "description": "Estimate activity durations and perform PERT analysis"
+                    },
+                    "step3": {
+                        "title": "View Critical Path",
+                        "description": "Examine automatically calculated critical path and network diagram"
+                    },
+                    "step4": {
+                        "title": "Get Reports",
+                        "description": "View detailed project reports and Gantt chart"
+                    }
+                }
+            },
+            "cta": {
+                "title": "Ready to Manage Your Project?",
+                "description": "Start planning your project with modern tools and perform critical path analysis right away.",
+                "button": "Go to Dashboard"
+            }
+        },
+        "dashboard": {
+            "title": "Dashboard",
+            "description": "View your project analytics"
+        },
+        "projects": {
+            "title": "Projects",
+            "description": "Manage your projects",
+            "noProjects": "No projects found",
+            "noProjectsDescription": "Create and save activities from the Dashboard page"
+        },
+        "calendar": {
+            "title": "Calendar",
+            "description": "View project timeline"
+        },
+        "help": {
+            "title": "Help",
+            "description": "Get help and support",
+            "faq": "Frequently Asked Questions",
+            "searchPlaceholder": "Search help topics...",
+            "categories": {
+                "gettingStarted": {
+                    "title": "Getting Started",
+                    "description": "Learn how to manage your project with CPM/PERT analysis"
+                },
+                "activities": {
+                    "title": "Activities",
+                    "description": "Learn how to add and manage activities"
+                },
+                "analysis": {
+                    "title": "Analysis",
+                    "description": "Get information about PERT analysis and critical path calculations"
+                },
+                "reports": {
+                    "title": "Reports",
+                    "description": "Project reports and Gantt chart usage"
+                }
+            },
+            "faqItems": {
+                "whatIsCPM": {
+                    "question": "What is Critical Path Method (CPM)?",
+                    "answer": "Critical Path Method is a project management technique that identifies the longest chain of activities and calculates the minimum completion time of the project."
+                },
+                "whatIsPERT": {
+                    "question": "What is PERT Analysis used for?",
+                    "answer": "PERT (Program Evaluation and Review Technique) analyzes project durations with optimistic, most likely, and pessimistic estimates, calculating the probability distribution of project completion time."
+                },
+                "howToStart": {
+                    "question": "How can I get started?",
+                    "answer": "You can start a new project from the Dashboard page, add your activities, and define dependencies. Then the system will automatically calculate the critical path."
+                },
+                "canIExport": {
+                    "question": "Can I export my project data?",
+                    "answer": "Yes, you can export your projects in Excel format and save your reports as PDF."
+                }
+            },
+            "contact": {
+                "title": "Contact Us",
+                "description": "Reach out to us with your questions or suggestions",
+                "email": "Email",
+                "message": "Message",
+                "send": "Send",
+                "or": "or",
+                "documentation": "View Documentation",
+                "community": "Community Forum"
+            }
+        },
+        "settings": {
+            "title": "Settings",
+            "description": "Manage your preferences",
+            "appearance": "Appearance",
+            "preferences": "Preferences"
+        }
+    }
+}

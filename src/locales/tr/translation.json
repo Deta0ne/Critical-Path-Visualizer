@@ -1,0 +1,219 @@
+{
+    "common": {
+        "title": "Kritik Yol Görselleştirici",
+        "addActivity": "Aktivite Ekle",
+        "edit": "Düzenle",
+        "delete": "Sil",
+        "load": "Yükle",
+        "save": "Kaydet",
+        "cancel": "İptal",
+        "close": "Kapat",
+        "actions": "İşlemler",
+        "deletedActivity": "Aktivite silindi",
+        "saveSuccess": "Başarıyla kaydedildi",
+        "required": "gereklidir",
+        "selectStartDate": "Başlangıç Tarihi Seçin",
+        "importExcel": "Excel'den İçe Aktar",
+        "dataImported": "Veri başarıyla içe aktarıldı",
+        "startDate": "Başlangıç Tarihi",
+        "estimatedEndDate": "Tahmini Bitiş Tarihi",
+        "next": "Sonraki",
+        "previous": "Önceki",
+        "addToCalendar": "Takvime Ekle",
+        "exportExcel": "Excel'e Aktar"
+    },
+    "activity": {
+        "activitie": "aktivite",
+        "title": "Aktiviteler",
+        "name": "Aktivite Adı",
+        "duration": "Süre",
+        "optimistic": "İyimser Süre",
+        "mostLikely": "Olası Süre",
+        "pessimistic": "Kötümser Süre",
+        "earliestStart": "En Erken Başlangıç",
+        "earliestFinish": "En Erken Bitiş",
+        "latestStart": "En Geç Başlangıç",
+        "latestFinish": "En Geç Bitiş",
+        "slack": "Bolluk",
+        "dependencies": "Bağımlılıklar",
+        "expectedDuration": "Beklenen Süre"
+      
+    },
+    "projectNotifications": {
+        "saveSuccess": "Başarılı",
+        "saveDescription": "isimli aktivite seti kaydedildi.",
+        "saveName": "Aktivite seti adı",
+        "saveButton": "Aktiviteleri Kaydet",
+        "deleteSuccess": "Proje silindi",
+        "deleteDescription": "Proje başarıyla silindi.",
+        "loadSuccess": "Proje yüklendi",
+        "loadDescription": "Proje başarıyla yüklendi. Dashboard sayfasına yönlendiriliyorsunuz."
+    },
+    "analysis": {
+        "projectStatistics": "Proje İstatistikleri",
+        "criticalPath": "Kritik Yol",
+        "projectDuration": "Proje Süresi",
+        "standardDeviation": "Standart Sapma",
+        "variance": "Varyans",
+        "expectedDuration": "Beklenen Süre",
+        "totalVariance": "Toplam Varyans",
+        "confidenceInterval": "Güven Aralığı",
+        "durationRange": "Süre Aralığı",
+        "networkDiagram": "Ağ Diyagramı",
+        "ganttChart": "Gantt Çizelgesi",
+        "completionProbability": "Tamamlama Olasılığı",
+        "days": "gün",
+        "noProjects": "Proje bulunamadı",
+        "setStartDate": "Lütfen başlangıç tarihini belirleyin",
+        "addActivities": "Aktiviteleri görüntüleyin PERT hesaplamaları"
+    },
+    "errors": {
+        "invalidInput": "Geçersiz giriş",
+        "duplicateActivity": "Bu aktivite zaten mevcut",
+        "missingFields": "Lütfen tüm gerekli alanları doldurun",
+        "invalidDuration": "Süre pozitif olmalıdır",
+        "durationOrder": "İyimser süre olası süreden küçük, olası süre kötümser süreden küçük olmalıdır",
+        "required": "gereklidir",
+        "optimisticTooHigh": "İyimser süre olası süreden büyük olamaz",
+        "mostLikelyRange": "Olası süre iyimser ve kötümser sürelerin arasında olmalıdır",
+        "pessimisticTooLow": "Kötümser süre olası süreden küçük olamaz",
+        "invalidDependencies": "Geçersiz bağımlılıklar: {{deps}}",
+        "cannotDelete": "Aktivite silinemez",
+        "activityHasDependents": "Bu aktiviteye bağımlı olanlar: {{activities}}"
+    },
+    "pages": {
+        "home": {
+            "title": "Ana Sayfa",
+            "description": "Kritik Yol Görselleştiriciye Hoş Geldiniz",
+            "heroTitle": "Proje Yönetimi ve CPM/PERT Analizi",
+            "heroDescription": "Projelerinizi profesyonel araçlarla planlayın, analiz edin ve yönetin. Modern arayüz ve gelişmiş özelliklerle proje yönetimi artık daha kolay.",
+            "getStarted": "Hemen Başla",
+            "myProjects": "Projelerim",
+            "features": {
+                "title": "Özellikler",
+                "pertAnalysis": {
+                    "title": "PERT Analizi",
+                    "description": "Proje sürelerini optimistik, en olası ve pesimistik tahminlerle analiz edin"
+                },
+                "networkDiagram": {
+                    "title": "Ağ Diyagramı",
+                    "description": "Proje aktivitelerini görsel bir ağ diyagramında görüntüleyin"
+                },
+                "criticalPath": {
+                    "title": "Kritik Yol",
+                    "description": "Projenizin kritik yolunu otomatik olarak hesaplayın"
+                },
+                "ganttChart": {
+                    "title": "Gantt Şeması",
+                    "description": "Proje zaman çizelgesini Gantt şeması ile planlayın"
+                },
+                "projectSaving": {
+                    "title": "Proje Kaydetme",
+                    "description": "Projelerinizi kaydedip daha sonra kullanmak üzere saklayın"
+                },
+                "statistics": {
+                    "title": "İstatistikler",
+                    "description": "Detaylı proje istatistikleri ve olasılık hesaplamaları"
+                }
+            },
+            "howItWorks": {
+                "title": "Nasıl Çalışır?",
+                "steps": {
+                    "step1": {
+                        "title": "Aktiviteleri Girin",
+                        "description": "Projenizin aktivitelerini ve bağımlılıklarını sisteme ekleyin"
+                    },
+                    "step2": {
+                        "title": "PERT Analizi Yapın",
+                        "description": "Aktivite sürelerini tahmin edin ve PERT analizini gerçekleştirin"
+                    },
+                    "step3": {
+                        "title": "Kritik Yolu Görün",
+                        "description": "Otomatik hesaplanan kritik yol ve ağ diyagramını inceleyin"
+                    },
+                    "step4": {
+                        "title": "Raporları Alın",
+                        "description": "Detaylı proje raporları ve Gantt şemasını görüntüleyin"
+                    }
+                }
+            },
+            "cta": {
+                "title": "Projenizi Yönetmeye Hazır mısınız?",
+                "description": "Modern araçlarla projenizi planlamaya başlayın ve kritik yol analizini hemen gerçekleştirin.",
+                "button": "Dashboard'a Git"
+            }
+        },
+        "dashboard": {
+            "title": "Gösterge Paneli",
+            "description": "Proje analizlerinizi görüntüleyin"
+        },
+        "projects": {
+            "title": "Projeler",
+            "description": "Projelerinizi yönetin",
+            "noProjects": "Henüz kaydedilmiş proje bulunmuyor",
+            "noProjectsDescription": "Dashboard sayfasından aktivitelerinizi oluşturup kaydedebilirsiniz"
+        },
+        "calendar": {
+            "title": "Takvim",
+            "description": "Proje zaman çizelgesini görüntüleyin"
+        },
+        "help": {
+            "title": "Yardım",
+            "description": "Yardım ve destek alın",
+            "faq": "Sıkça Sorulan Sorular",
+            "searchPlaceholder": "Yardım konusu ara...",
+            "categories": {
+                "gettingStarted": {
+                    "title": "Başlangıç",
+                    "description": "CPM/PERT analizi ile projenizi nasıl yönetebileceğinizi öğrenin"
+                },
+                "activities": {
+                    "title": "Aktiviteler",
+                    "description": "Aktiviteleri nasıl ekleyeceğinizi ve yöneteceğinizi öğrenin"
+                },
+                "analysis": {
+                    "title": "Analiz",
+                    "description": "PERT analizi ve kritik yol hesaplamaları hakkında bilgi alın"
+                },
+                "reports": {
+                    "title": "Raporlar",
+                    "description": "Proje raporları ve Gantt şeması kullanımı"
+                }
+            },
+            "faqItems": {
+                "whatIsCPM": {
+                    "question": "Kritik Yol Metodu (CPM) nedir?",
+                    "answer": "Kritik Yol Metodu, bir projedeki en uzun aktivite zincirini belirleyen ve projenin minimum tamamlanma süresini hesaplayan bir proje yönetimi tekniğidir."
+                },
+                "whatIsPERT": {
+                    "question": "PERT Analizi ne işe yarar?",
+                    "answer": "PERT (Program Evaluation and Review Technique), proje sürelerini optimistik, en olası ve pesimistik tahminlerle analiz eden ve proje tamamlanma süresinin olasılık dağılımını hesaplayan bir tekniktir."
+                },
+                "howToStart": {
+                    "question": "Nasıl başlayabilirim?",
+                    "answer": "Dashboard sayfasından yeni bir proje başlatabilir, aktivitelerinizi ekleyebilir ve bağımlılıkları tanımlayabilirsiniz. Ardından sistem otomatik olarak kritik yolu hesaplayacaktır."
+                },
+                "canIExport": {
+                    "question": "Proje verilerimi dışa aktarabilir miyim?",
+                    "answer": "Evet, projelerinizi Excel formatında dışa aktarabilir ve raporlarınızı PDF olarak kaydedebilirsiniz."
+                }
+            },
+            "contact": {
+                "title": "Bizimle İletişime Geçin",
+                "description": "Sorularınız veya önerileriniz için bize ulaşın",
+                "email": "E-posta",
+                "message": "Mesajınız",
+                "send": "Gönder",
+                "or": "veya",
+                "documentation": "Dokümantasyonu İnceleyin",
+                "community": "Topluluk Forumu"
+            }
+        },
+        "settings": {
+            "title": "Ayarlar",
+            "description": "Tercihlerinizi yönetin",
+            "appearance": "Görünüm",
+            "preferences": "Tercihler"
+        }
+    }
+}
